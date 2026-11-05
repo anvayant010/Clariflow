@@ -1,0 +1,243 @@
+{
+ "language": "en_deva",
+ "_status": "DRAFT: English words as Prisma writes them in Devanagari (observed in gate test 2026-11-04). Extend from real output.",
+ "numbers": {
+  "ज़ीरो": 0,
+  "झिरो": 0,
+  "जीरो": 0,
+  "वन": 1,
+  "टू": 2,
+  "थ्री": 3,
+  "फोर": 4,
+  "फाइव": 5,
+  "सिक्स": 6,
+  "सेव्हन": 7,
+  "सेवन": 7,
+  "एट": 8,
+  "नाइन": 9,
+  "टेन": 10,
+  "इलेव्हन": 11,
+  "इलेवन": 11,
+  "ट्वेल्व": 12,
+  "थर्टीन": 13,
+  "फोर्टीन": 14,
+  "फिफ्टीन": 15,
+  "सिक्स्टीन": 16,
+  "सेव्हन्टीन": 17,
+  "सेवंटीन": 17,
+  "एटीन": 18,
+  "नाइनटीन": 19,
+  "ट्वेंटी": 20,
+  "थर्टी": 30,
+  "फोर्टी": 40,
+  "फिफ्टी": 50,
+  "सिक्स्टी": 60,
+  "सेव्हन्टी": 70,
+  "सेवंटी": 70,
+  "एटी": 80,
+  "नाइंटी": 90
+ },
+ "multipliers": {
+  "हंड्रेड": 100,
+  "थाउजंड": 1000
+ },
+ "tens_compound_words": [
+  "ट्वेंटी",
+  "थर्टी",
+  "फोर्टी",
+  "फिफ्टी",
+  "सिक्स्टी",
+  "सेव्हन्टी",
+  "सेवंटी",
+  "एटी",
+  "नाइंटी"
+ ],
+ "clock_markers_plain": [
+  "ओक्लॉक"
+ ],
+ "clock_markers_with_minutes": [],
+ "minute_markers": [
+  "मिनट्स"
+ ],
+ "time_fractions": [],
+ "attach_prefixes": [],
+ "time_cues_before": [
+  "अराउंड"
+ ],
+ "time_cues_after": [],
+ "ampm": {
+  "am": [
+   [
+    "एएम"
+   ],
+   [
+    "ए",
+    "एम"
+   ]
+  ],
+  "pm": [
+   [
+    "पीएम"
+   ],
+   [
+    "पी",
+    "एम"
+   ]
+  ]
+ },
+ "dayparts": {
+  "मॉर्निंग": "morning",
+  "आफ्टरनून": "afternoon",
+  "इव्हनिंग": "evening",
+  "ईवनिंग": "evening",
+  "नाईट": "night",
+  "नाइट": "night"
+ },
+ "correction_markers": [
+  [
+   "नो"
+  ],
+  [
+   "सॉरी"
+  ],
+  [
+   "आय",
+   "मीन"
+  ],
+  [
+   "ऍक्च्युअली"
+  ],
+  [
+   "एक्चुअली"
+  ]
+ ],
+ "units": {
+  "पीएसआय": {
+   "canonical": "PSI",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "पीएसआई": {
+   "canonical": "PSI",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "पी एस आय": {
+   "canonical": "PSI",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "पी एस आई": {
+   "canonical": "PSI",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "पिएसआय": {
+   "canonical": "PSI",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "आर पी एम": {
+   "canonical": "RPM",
+   "kind": "speed",
+   "ambiguous": false
+  },
+  "आरपीएम": {
+   "canonical": "RPM",
+   "kind": "speed",
+   "ambiguous": false
+  },
+  "परसेंट": {
+   "canonical": "%",
+   "kind": "percent",
+   "ambiguous": false
+  },
+  "पर्सेंट": {
+   "canonical": "%",
+   "kind": "percent",
+   "ambiguous": false
+  },
+  "सेंटीग्रेड": {
+   "canonical": "°C",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "फॅरेनहाइट": {
+   "canonical": "°F",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "फारेनहाइट": {
+   "canonical": "°F",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "वोल्ट्स": {
+   "canonical": "V",
+   "kind": "voltage",
+   "ambiguous": false
+  },
+  "व्होल्ट्स": {
+   "canonical": "V",
+   "kind": "voltage",
+   "ambiguous": false
+  },
+  "एम्प्स": {
+   "canonical": "A",
+   "kind": "current",
+   "ambiguous": false
+  }
+ },
+ "concepts": {
+  "symptom:noise": [
+   "नॉइज",
+   "साउंड",
+   "साऊंड"
+  ],
+  "symptom:smoke": [
+   "स्मोक"
+  ],
+  "symptom:stopped": [
+   "स्टॉप्ड",
+   "नॉट वर्किंग",
+   "नॉट रनिंग"
+  ],
+  "symptom:broken": [
+   "ब्रोकन",
+   "ब्रेकडाउन"
+  ],
+  "symptom:jammed": [
+   "जॅम्ड",
+   "जाम्ड",
+   "स्टक"
+  ],
+  "symptom:smell": [
+   "स्मेल"
+  ],
+  "symptom:sparks": [
+   "स्पार्क",
+   "स्पार्किंग",
+   "स्पार्क्स"
+  ],
+  "symptom:heat": [
+   "हॉट",
+   "ओव्हरहीट",
+   "ओव्हरहीटिंग",
+   "ओवरहीट"
+  ],
+  "symptom:leakage": [
+   "ड्रिपिंग",
+   "लिक"
+  ]
+ },
+ "negators": [
+  "नो"
+ ],
+ "temporal_markers": [],
+ "measure_nouns": {
+  "प्रेशर": "pressure",
+  "टेम्परेचर": "temperature",
+  "टेम्प्रेचर": "temperature",
+  "स्पीड": "speed"
+ }
+}

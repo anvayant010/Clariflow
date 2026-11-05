@@ -1,0 +1,616 @@
+{
+ "language": "en",
+ "_status": "DRAFT: native speakers must review spelling variants and add forms seen in real Prisma output.",
+ "numbers": {
+  "zero": 0,
+  "one": 1,
+  "two": 2,
+  "three": 3,
+  "four": 4,
+  "five": 5,
+  "six": 6,
+  "seven": 7,
+  "eight": 8,
+  "nine": 9,
+  "ten": 10,
+  "eleven": 11,
+  "twelve": 12,
+  "thirteen": 13,
+  "fourteen": 14,
+  "fifteen": 15,
+  "sixteen": 16,
+  "seventeen": 17,
+  "eighteen": 18,
+  "nineteen": 19,
+  "twenty": 20,
+  "thirty": 30,
+  "forty": 40,
+  "fourty": 40,
+  "fifty": 50,
+  "sixty": 60,
+  "seventy": 70,
+  "eighty": 80,
+  "ninety": 90
+ },
+ "multipliers": {
+  "hundred": 100,
+  "thousand": 1000,
+  "lakh": 100000
+ },
+ "tens_compound_words": [
+  "twenty",
+  "thirty",
+  "forty",
+  "fourty",
+  "fifty",
+  "sixty",
+  "seventy",
+  "eighty",
+  "ninety"
+ ],
+ "clock_markers_plain": [
+  "o'clock",
+  "oclock"
+ ],
+ "clock_markers_with_minutes": [],
+ "minute_markers": [
+  "minutes",
+  "minute",
+  "min",
+  "mins"
+ ],
+ "time_fractions": [
+  {
+   "words": [
+    "half",
+    "past"
+   ],
+   "minute": 30,
+   "shift": 0,
+   "takes_hour": true,
+   "requires_clock_marker": false
+  },
+  {
+   "words": [
+    "quarter",
+    "past"
+   ],
+   "minute": 15,
+   "shift": 0,
+   "takes_hour": true,
+   "requires_clock_marker": false
+  },
+  {
+   "words": [
+    "quarter",
+    "after"
+   ],
+   "minute": 15,
+   "shift": 0,
+   "takes_hour": true,
+   "requires_clock_marker": false
+  },
+  {
+   "words": [
+    "quarter",
+    "to"
+   ],
+   "minute": 45,
+   "shift": -1,
+   "takes_hour": true,
+   "requires_clock_marker": false
+  }
+ ],
+ "attach_prefixes": [],
+ "time_cues_before": [
+  "at",
+  "around",
+  "about",
+  "by",
+  "till",
+  "until",
+  "since"
+ ],
+ "time_cues_after": [],
+ "ampm": {
+  "am": [
+   [
+    "am"
+   ],
+   [
+    "a",
+    "m"
+   ]
+  ],
+  "pm": [
+   [
+    "pm"
+   ],
+   [
+    "p",
+    "m"
+   ]
+  ]
+ },
+ "dayparts": {
+  "morning": "morning",
+  "afternoon": "afternoon",
+  "evening": "evening",
+  "night": "night",
+  "tonight": "night"
+ },
+ "correction_markers": [
+  [
+   "sorry"
+  ],
+  [
+   "no"
+  ],
+  [
+   "actually"
+  ],
+  [
+   "i",
+   "mean"
+  ],
+  [
+   "rather"
+  ],
+  [
+   "correction"
+  ],
+  [
+   "wait"
+  ],
+  [
+   "not"
+  ],
+  [
+   "make",
+   "that"
+  ],
+  [
+   "i",
+   "meant"
+  ]
+ ],
+ "units": {
+  "psi": {
+   "canonical": "PSI",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "bar": {
+   "canonical": "bar",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "kpa": {
+   "canonical": "kPa",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "mpa": {
+   "canonical": "MPa",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "degree": {
+   "canonical": "degree",
+   "kind": "temperature",
+   "ambiguous": true
+  },
+  "degrees": {
+   "canonical": "degree",
+   "kind": "temperature",
+   "ambiguous": true
+  },
+  "°": {
+   "canonical": "degree",
+   "kind": "temperature",
+   "ambiguous": true
+  },
+  "celsius": {
+   "canonical": "°C",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "centigrade": {
+   "canonical": "°C",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "°c": {
+   "canonical": "°C",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "fahrenheit": {
+   "canonical": "°F",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "°f": {
+   "canonical": "°F",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "rpm": {
+   "canonical": "RPM",
+   "kind": "speed",
+   "ambiguous": false
+  },
+  "volt": {
+   "canonical": "V",
+   "kind": "voltage",
+   "ambiguous": false
+  },
+  "volts": {
+   "canonical": "V",
+   "kind": "voltage",
+   "ambiguous": false
+  },
+  "amp": {
+   "canonical": "A",
+   "kind": "current",
+   "ambiguous": false
+  },
+  "amps": {
+   "canonical": "A",
+   "kind": "current",
+   "ambiguous": false
+  },
+  "ampere": {
+   "canonical": "A",
+   "kind": "current",
+   "ambiguous": false
+  },
+  "amperes": {
+   "canonical": "A",
+   "kind": "current",
+   "ambiguous": false
+  },
+  "percent": {
+   "canonical": "%",
+   "kind": "percent",
+   "ambiguous": false
+  },
+  "%": {
+   "canonical": "%",
+   "kind": "percent",
+   "ambiguous": false
+  },
+  "mm": {
+   "canonical": "mm",
+   "kind": "length",
+   "ambiguous": false
+  },
+  "cm": {
+   "canonical": "cm",
+   "kind": "length",
+   "ambiguous": false
+  },
+  "litre": {
+   "canonical": "L",
+   "kind": "volume",
+   "ambiguous": false
+  },
+  "litres": {
+   "canonical": "L",
+   "kind": "volume",
+   "ambiguous": false
+  },
+  "liter": {
+   "canonical": "L",
+   "kind": "volume",
+   "ambiguous": false
+  },
+  "liters": {
+   "canonical": "L",
+   "kind": "volume",
+   "ambiguous": false
+  },
+  "hz": {
+   "canonical": "Hz",
+   "kind": "frequency",
+   "ambiguous": false
+  },
+  "kw": {
+   "canonical": "kW",
+   "kind": "power",
+   "ambiguous": false
+  },
+  "kilopascal": {
+   "canonical": "kPa",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "kilopascals": {
+   "canonical": "kPa",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "megapascal": {
+   "canonical": "MPa",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "megapascals": {
+   "canonical": "MPa",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "bars": {
+   "canonical": "bar",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "p s i": {
+   "canonical": "PSI",
+   "kind": "pressure",
+   "ambiguous": false
+  },
+  "r p m": {
+   "canonical": "RPM",
+   "kind": "speed",
+   "ambiguous": false
+  },
+  "revolutions per minute": {
+   "canonical": "RPM",
+   "kind": "speed",
+   "ambiguous": false
+  },
+  "degree c": {
+   "canonical": "°C",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "degrees c": {
+   "canonical": "°C",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "degree f": {
+   "canonical": "°F",
+   "kind": "temperature",
+   "ambiguous": false
+  },
+  "degrees f": {
+   "canonical": "°F",
+   "kind": "temperature",
+   "ambiguous": false
+  }
+ },
+ "concepts": {
+  "symptom:stopped": [
+   "stopped",
+   "tripped",
+   "trip",
+   "stopped working",
+   "not working",
+   "not running",
+   "does not work",
+   "won't start",
+   "will not start",
+   "not starting",
+   "doesn't start",
+   "does not start",
+   "failed to start",
+   "not functioning",
+   "stopped running"
+  ],
+  "symptom:running": [
+   "running"
+  ],
+  "symptom:vibration": [
+   "vibration",
+   "vibrating",
+   "vibrate",
+   "vibrates",
+   "shaking",
+   "shakes",
+   "shake",
+   "shaky",
+   "wobbling",
+   "wobble"
+  ],
+  "symptom:noise": [
+   "noise",
+   "noisy",
+   "sound",
+   "sounds",
+   "grinding",
+   "squealing",
+   "rattling",
+   "knocking",
+   "whining",
+   "hissing"
+  ],
+  "symptom:leakage": [
+   "leakage",
+   "leaking",
+   "leak",
+   "leaks",
+   "dripping",
+   "drips",
+   "drip",
+   "seeping",
+   "seepage",
+   "oozing",
+   "leaked"
+  ],
+  "symptom:water": [
+   "water"
+  ],
+  "symptom:heat": [
+   "heat",
+   "overheating",
+   "hot",
+   "overheated",
+   "heated",
+   "heating up",
+   "heats up",
+   "running hot",
+   "burning hot"
+  ],
+  "symptom:smoke": [
+   "smoke",
+   "smoking"
+  ],
+  "action:turned_off": [
+   "turned off",
+   "switched off",
+   "shut off",
+   "turned it off",
+   "switched it off"
+  ],
+  "cause_cue": [
+   "cause",
+   "reason",
+   "why",
+   "because",
+   "due to",
+   "caused by"
+  ],
+  "unknown_phrase": [
+   "don't know",
+   "do not know",
+   "not sure",
+   "unknown",
+   "no idea",
+   "don't remember",
+   "do not remember",
+   "can't remember",
+   "cannot remember",
+   "no clue"
+  ],
+  "urgency:emergency": [
+   "emergency"
+  ],
+  "urgency:stop_work": [
+   "stop work",
+   "stop the work",
+   "stop the line",
+   "stop production",
+   "shut it down",
+   "shut down",
+   "stop the machine",
+   "stop it now"
+  ],
+  "urgency:today": [
+   "attention today",
+   "attend today",
+   "fix today",
+   "repair today",
+   "check today"
+  ],
+  "urgency:can_wait": [
+   "can wait",
+   "no rush",
+   "not urgent",
+   "no hurry"
+  ],
+  "urgency_answer:emergency": [
+   "fire",
+   "danger",
+   "hurt",
+   "injured"
+  ],
+  "urgency_answer:stop_work": [
+   "stop",
+   "halt"
+  ],
+  "urgency_answer:today": [
+   "today"
+  ],
+  "urgency_answer:can_wait": [
+   "wait",
+   "later",
+   "tomorrow"
+  ],
+  "symptom:fire": [
+   "on fire",
+   "caught fire",
+   "catching fire",
+   "burning"
+  ],
+  "symptom:broken": [
+   "broken",
+   "broke",
+   "broke down",
+   "broken down",
+   "breakdown",
+   "out of order"
+  ],
+  "symptom:jammed": [
+   "jammed",
+   "jam",
+   "stuck",
+   "seized",
+   "seized up"
+  ],
+  "symptom:smell": [
+   "smell",
+   "smells",
+   "smelling",
+   "burning smell",
+   "burnt smell",
+   "smell of burning",
+   "odour",
+   "odor"
+  ],
+  "symptom:sparks": [
+   "spark",
+   "sparks",
+   "sparking"
+  ]
+ },
+ "clause_breaks": [
+  "and",
+  "but",
+  "while",
+  "although"
+ ],
+ "cause_fillers": [
+  "is",
+  "was",
+  "are",
+  "of",
+  "that",
+  "to"
+ ],
+ "negators": [
+  "no",
+  "not",
+  "without",
+  "never"
+ ],
+ "temporal_markers": [
+  "now",
+  "earlier",
+  "before",
+  "then",
+  "previously",
+  "initially"
+ ],
+ "measure_nouns": {
+  "pressure": "pressure",
+  "temperature": "temperature",
+  "temp": "temperature",
+  "speed": "speed"
+ },
+ "decimal_points": [
+  "point"
+ ],
+ "plus_half": [
+  [
+   "and",
+   "a",
+   "half"
+  ],
+  [
+   "and",
+   "half"
+  ]
+ ]
+}
