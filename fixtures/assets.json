@@ -1,0 +1,207 @@
+{
+ "_note": "Fictional plant, synthetic data only. P-21 deliberately shares the alias 'pump twelve' with P-12 to exercise the ambiguous-asset path.",
+ "assets": [
+  {
+   "id": "P-12",
+   "display_name": "Feed Water Pump 12",
+   "aliases": [
+    "pump twelve",
+    "pump 12",
+    "p12",
+    "feed pump",
+    "पंप बारा",
+    "पंप १२",
+    "पंप 12",
+    "पी ट्वेल्व",
+    "पी बारा",
+    "पी १२",
+    "pump बारा",
+    "पंप बारह",
+    "feed water pump",
+    "फीड वॉटर पंप",
+    "फीड पंप"
+   ],
+   "asset_type": "pump",
+   "synthetic_location": "Boiler House, Line 1"
+  },
+  {
+   "id": "P-21",
+   "display_name": "Cooling Water Pump 21",
+   "aliases": [
+    "pump twenty one",
+    "pump 21",
+    "p21",
+    "cooling pump",
+    "pump twelve",
+    "पंप बारा",
+    "पंप एकवीस",
+    "पी ट्वेंटी वन",
+    "पी एकवीस",
+    "पी २१",
+    "pump बारा",
+    "पंप 21",
+    "पंप इक्कीस",
+    "पंप बारह",
+    "cooling water pump",
+    "कूलिंग वॉटर पंप",
+    "कूलिंग पंप"
+   ],
+   "asset_type": "pump",
+   "synthetic_location": "Utility Yard, Line 2 (relocated from Line 1, still called 'pump twelve' by some staff)"
+  },
+  {
+   "id": "C-04",
+   "display_name": "Air Compressor 04",
+   "aliases": [
+    "compressor four",
+    "compressor 4",
+    "c4",
+    "compressor",
+    "कंप्रेसर चार",
+    "कंप्रेसर 4",
+    "सी फोर",
+    "सी झिरो फोर",
+    "सी ४",
+    "कंप्रेसर फोर",
+    "air compressor",
+    "एअर कंप्रेसर"
+   ],
+   "asset_type": "compressor",
+   "synthetic_location": "Compressor Room"
+  },
+  {
+   "id": "M-07",
+   "display_name": "Conveyor Drive Motor 07",
+   "aliases": [
+    "motor seven",
+    "motor 7",
+    "m7",
+    "conveyor motor",
+    "मोटर सात",
+    "मोटर 7",
+    "एम सेव्हन",
+    "एम सेवन",
+    "एम झिरो सेव्हन",
+    "एम ७",
+    "drive motor",
+    "conveyor drive motor"
+   ],
+   "asset_type": "motor",
+   "synthetic_location": "Packing Line"
+  },
+  {
+   "id": "F-03",
+   "display_name": "Exhaust Fan 03",
+   "aliases": [
+    "fan three",
+    "fan 3",
+    "f3",
+    "exhaust fan",
+    "फॅन तीन",
+    "पंखा तीन",
+    "fan 03",
+    "एफ थ्री",
+    "एफ झिरो थ्री",
+    "एफ ३",
+    "फॅन 3",
+    "पंखा 3",
+    "फैन तीन",
+    "फैन 3"
+   ],
+   "asset_type": "fan",
+   "synthetic_location": "Paint Shop"
+  },
+  {
+   "id": "V-09",
+   "display_name": "Steam Control Valve 09",
+   "aliases": [
+    "valve nine",
+    "valve 9",
+    "v9",
+    "steam valve",
+    "वाल्व नऊ",
+    "वाल्व 9",
+    "व्ही नाइन",
+    "व्ही झिरो नाइन",
+    "व्ही ९",
+    "वाल्व नौ",
+    "steam control valve",
+    "control valve"
+   ],
+   "asset_type": "valve",
+   "synthetic_location": "Boiler House, Line 1"
+  },
+  {
+   "id": "G-06",
+   "display_name": "Gearbox 06",
+   "aliases": [
+    "gearbox six",
+    "gearbox 6",
+    "g6",
+    "गिअरबॉक्स सहा",
+    "जी सिक्स",
+    "जी झिरो सिक्स",
+    "जी ६",
+    "गिअरबॉक्स 6",
+    "गियरबॉक्स छह",
+    "गियरबॉक्स 6"
+   ],
+   "asset_type": "gearbox",
+   "synthetic_location": "Press Shop"
+  },
+  {
+   "id": "H-11",
+   "display_name": "Hydraulic Press 11",
+   "aliases": [
+    "press eleven",
+    "press 11",
+    "hydraulic press",
+    "h11",
+    "प्रेस अकरा",
+    "एच इलेव्हन",
+    "एच ११",
+    "प्रेस 11",
+    "प्रेस ग्यारह"
+   ],
+   "asset_type": "press",
+   "synthetic_location": "Press Shop"
+  },
+  {
+   "id": "B-02",
+   "display_name": "Conveyor Belt 02",
+   "aliases": [
+    "belt two",
+    "belt 2",
+    "conveyor belt",
+    "b2",
+    "बेल्ट दोन",
+    "बी टू",
+    "बी झिरो टू",
+    "बी २",
+    "बेल्ट 2",
+    "बेल्ट दो"
+   ],
+   "asset_type": "conveyor",
+   "synthetic_location": "Packing Line"
+  },
+  {
+   "id": "T-08",
+   "display_name": "Cooling Tower 08",
+   "aliases": [
+    "tower eight",
+    "tower 8",
+    "cooling tower",
+    "t8",
+    "टॉवर आठ",
+    "टी एट",
+    "टी झिरो एट",
+    "टी ८",
+    "टॉवर 8",
+    "टावर आठ",
+    "टावर 8"
+   ],
+   "asset_type": "cooling_tower",
+   "synthetic_location": "Utility Yard"
+  }
+ ]
+}
