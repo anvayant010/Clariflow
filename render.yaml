@@ -1,0 +1,28 @@
+# Render blueprint: New -> Blueprint -> pick this repo. Render asks for the Gnani key (it is never stored in the repo).
+services:
+  - type: web
+    name: clariflow
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: GNANI_API_KEY_ID
+        sync: false        # asked for at creation; private
+      - key: TRUSTED_PROXY_HOPS
+        value: "1"         # check /api/visitor after deploying; use 2 if two devices on different networks show the same value
+      - key: DAILY_STT_CAP
+        value: "100"
+      - key: DAILY_TTS_CAP
+        value: "150"
+      - key: SESSION_AUDIO_CAP
+        value: "10"
+      - key: SESSION_TTS_CAP
+        value: "20"
+      - key: IP_SESSIONS_PER_DAY
+        value: "10"
+      - key: IP_STT_PER_DAY
+        value: "25"
+      - key: IP_TTS_PER_DAY
+        value: "40"
