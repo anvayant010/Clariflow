@@ -1,0 +1,99 @@
+{
+ "mode": "recorded",
+ "definition": "A baseline we wrote, not a real product: the same transcript parsing as Clariflow, then 'save as heard' with no checks (first asset candidate, Celsius assumed, spoken hour kept as-is, missing unit left blank, contradictions saved as fact, last value wins, nothing asked). On audio it uses plain verbatim STT.",
+ "naive": {
+  "stt": "plain verbatim STT, no keyterms",
+  "transcript": "पीकवेल पंप बंद पडला आहे। सकाळी साडे दहा वाजता व्हायब्रेशन खूप होतं, प्रेशर नाही, पन्नास होतं।",
+  "record": {
+   "system": "naive",
+   "asset": null,
+   "time": "10:30",
+   "measurements": [
+    {
+     "kind": "pressure",
+     "value": 50,
+     "unit": null,
+     "corrected_from": null,
+     "flagged": false
+    }
+   ],
+   "symptoms": {
+    "stopped": "present",
+    "vibration": "present"
+   },
+   "cause": null,
+   "flags": []
+  },
+  "assumptions": [
+   "Saved a number with no unit and no warning.",
+   "Saved the report with no asset and no warning."
+  ],
+  "asked": []
+ },
+ "clariflow": {
+  "stt": "codemix STT + keyterms (our own asset IDs)",
+  "transcript": "P-12 pump बंद पडला आहे. सकाळी साडेदहा वाजता vibration खूप होतं. pressure पंधरा नाही, पन्नास होतं.",
+  "record": {
+   "system": "clariflow",
+   "asset": "P-12",
+   "time": "10:30",
+   "measurements": [
+    {
+     "kind": "pressure",
+     "value": 50,
+     "unit": null,
+     "corrected_from": 15,
+     "flagged": true
+    }
+   ],
+   "symptoms": {
+    "stopped": "present",
+    "vibration": "present"
+   },
+   "cause": null,
+   "flags": [
+    "missing_unit"
+   ]
+  },
+  "asked": [
+   "missing_unit"
+  ]
+ },
+ "score": {
+  "naive": {
+   "slots": 6,
+   "correct": 4,
+   "wrong": 0,
+   "assumed": 0,
+   "unresolved": 1,
+   "missing": 1,
+   "flagged_safe": 0,
+   "handled": 0,
+   "unnecessary_questions": 0,
+   "corrections_total": 1,
+   "corrections_kept": 0,
+   "notes": [
+    "asset P-12 not saved, nothing asked",
+    "missing unit saved with no question"
+   ],
+   "risky": 1
+  },
+  "clariflow": {
+   "slots": 6,
+   "correct": 5,
+   "wrong": 0,
+   "assumed": 0,
+   "unresolved": 0,
+   "missing": 0,
+   "flagged_safe": 0,
+   "handled": 1,
+   "unnecessary_questions": 0,
+   "corrections_total": 1,
+   "corrections_kept": 1,
+   "notes": [],
+   "risky": 0
+  },
+  "note": "Scored against truth written by the code author from the recording script."
+ },
+ "recorded_on": "2026-11-04"
+}

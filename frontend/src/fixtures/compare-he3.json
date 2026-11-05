@@ -1,0 +1,97 @@
+{
+ "mode": "recorded",
+ "definition": "A baseline we wrote, not a real product: the same transcript parsing as Clariflow, then 'save as heard' with no checks (first asset candidate, Celsius assumed, spoken hour kept as-is, missing unit left blank, contradictions saved as fact, last value wins, nothing asked). On audio it uses plain verbatim STT.",
+ "naive": {
+  "stt": "plain verbatim STT, no keyterms",
+  "transcript": "पीएल ट्वेल्व का टेम्परेचर अस्सी है और थोड़ी आवाज आ रही है।",
+  "record": {
+   "system": "naive",
+   "asset": null,
+   "time": null,
+   "measurements": [
+    {
+     "kind": "temperature",
+     "value": 80,
+     "unit": null,
+     "corrected_from": null,
+     "flagged": false
+    }
+   ],
+   "symptoms": {
+    "noise": "present"
+   },
+   "cause": null,
+   "flags": []
+  },
+  "assumptions": [
+   "Saved a number with no unit and no warning.",
+   "Saved the report with no asset and no warning."
+  ],
+  "asked": []
+ },
+ "clariflow": {
+  "stt": "codemix STT + keyterms (our own asset IDs)",
+  "transcript": "P-12 का temperature अस्सी है और थोड़ी आवाज आ रही है।",
+  "record": {
+   "system": "clariflow",
+   "asset": "P-12",
+   "time": null,
+   "measurements": [
+    {
+     "kind": "temperature",
+     "value": 80,
+     "unit": null,
+     "corrected_from": null,
+     "flagged": true
+    }
+   ],
+   "symptoms": {
+    "noise": "present"
+   },
+   "cause": null,
+   "flags": [
+    "missing_unit"
+   ]
+  },
+  "asked": [
+   "missing_unit"
+  ]
+ },
+ "score": {
+  "naive": {
+   "slots": 4,
+   "correct": 2,
+   "wrong": 0,
+   "assumed": 0,
+   "unresolved": 1,
+   "missing": 1,
+   "flagged_safe": 0,
+   "handled": 0,
+   "unnecessary_questions": 0,
+   "corrections_total": 0,
+   "corrections_kept": 0,
+   "notes": [
+    "asset P-12 not saved, nothing asked",
+    "missing unit saved with no question"
+   ],
+   "risky": 1
+  },
+  "clariflow": {
+   "slots": 4,
+   "correct": 3,
+   "wrong": 0,
+   "assumed": 0,
+   "unresolved": 0,
+   "missing": 0,
+   "flagged_safe": 0,
+   "handled": 1,
+   "unnecessary_questions": 0,
+   "corrections_total": 0,
+   "corrections_kept": 0,
+   "notes": [],
+   "risky": 0
+  },
+  "note": "Scored against truth written by the code author from the recording script."
+ },
+ "recorded_on": "2026-11-04"
+}

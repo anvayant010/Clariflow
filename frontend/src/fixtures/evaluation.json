@@ -1,0 +1,90 @@
+{
+ "historical": true,
+ "note": "Results of a past run on the date shown, not recomputed on request.",
+ "generated": "2026-11-04",
+ "mode": "recorded transcripts, no live API calls",
+ "stt_note": "Transcripts are RECORDED Prisma v3.0 output from 2026-11-04 (cache in evaluation/results/gate_cache.json); this report made no API calls. 'Naive' audio rows use plain verbatim STT; Clariflow rows use format=codemix + keyterms (decision D12; the keyterms are our own asset IDs).",
+ "naive_definition": "A baseline we wrote, not a real product: the same transcript parsing as Clariflow, then 'save as heard' with no checks (first asset candidate, Celsius assumed, spoken hour kept as-is, missing unit left blank, contradictions saved as fact, last value wins, nothing asked). On audio it uses plain verbatim STT.",
+ "caveats": [
+  "Truth records were written by Claude, the same author as the extractor, from the scripts the speaker was asked to read; no second person has checked them against the audio.",
+  "Audio set: 9 clips, one speaker (Anvay), quiet room, Marathi/Hindi/English mixes. Not real factory or telephone audio.",
+  "The 57 written transcripts were used while fixing the extractor, so they measure regression, not unseen-data accuracy. The only first-run unseen figure is 15 of 18 (see docs/PROGRESS.md).",
+  "The naive baseline is one we wrote (see its definition above); a real summariser or LLM pipeline could do better or worse.",
+  "Clariflow's numbers are its draft BEFORE a human answers. It cannot save until questions are resolved and the user confirms.",
+  "Counts are checked items against truth, not a probability of correctness, and no confidence interval is claimed."
+ ],
+ "datasets": {
+  "clips": {
+   "title": "9 real recordings (recorded transcripts)",
+   "n_cases": 9,
+   "totals": {
+    "naive": {
+     "slots": 34,
+     "correct": 23,
+     "wrong": 0,
+     "assumed": 3,
+     "unresolved": 3,
+     "missing": 5,
+     "flagged_safe": 0,
+     "handled": 0,
+     "unnecessary_questions": 0,
+     "corrections_total": 3,
+     "corrections_kept": 0,
+     "risky": 6,
+     "cases_with_risky": 6
+    },
+    "clariflow": {
+     "slots": 34,
+     "correct": 26,
+     "wrong": 0,
+     "assumed": 0,
+     "unresolved": 0,
+     "missing": 0,
+     "flagged_safe": 2,
+     "handled": 6,
+     "unnecessary_questions": 2,
+     "corrections_total": 3,
+     "corrections_kept": 3,
+     "risky": 0,
+     "cases_with_risky": 0
+    }
+   }
+  },
+  "phrasings": {
+   "title": "57 written transcripts (same text to both systems)",
+   "n_cases": 57,
+   "totals": {
+    "naive": {
+     "slots": 140,
+     "correct": 127,
+     "wrong": 0,
+     "assumed": 7,
+     "unresolved": 6,
+     "missing": 0,
+     "flagged_safe": 0,
+     "handled": 0,
+     "unnecessary_questions": 0,
+     "corrections_total": 4,
+     "corrections_kept": 0,
+     "risky": 13,
+     "cases_with_risky": 13
+    },
+    "clariflow": {
+     "slots": 140,
+     "correct": 127,
+     "wrong": 0,
+     "assumed": 0,
+     "unresolved": 0,
+     "missing": 0,
+     "flagged_safe": 0,
+     "handled": 13,
+     "unnecessary_questions": 0,
+     "corrections_total": 4,
+     "corrections_kept": 4,
+     "risky": 0,
+     "cases_with_risky": 0
+    }
+   }
+  }
+ }
+}

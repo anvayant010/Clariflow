@@ -1,0 +1,568 @@
+{
+ "mode": "recorded Prisma v3.0 transcripts (2026-11-04), re-run through the production pipeline now; no API calls",
+ "naive_definition": "A baseline we wrote, not a real product: the same transcript parsing as Clariflow, then 'save as heard' with no checks (first asset candidate, Celsius assumed, spoken hour kept as-is, missing unit left blank, contradictions saved as fact, last value wins, nothing asked). On audio it uses plain verbatim STT.",
+ "scenarios": [
+  {
+   "id": "break-1-correction",
+   "title": "Spoken correction",
+   "what_it_tests": "The speaker says one pressure, corrects it, and never states a unit. The corrected value must win, the old one must stay visible as history, and the missing unit must be asked, not assumed.",
+   "provenance": "real Prisma v3.0 transcript of Anvay's recording, 2026-11-04",
+   "transcript": "P-12 pump बंद पडला आहे. सकाळी साडेदहा वाजता vibration खूप होतं. pressure पंधरा नाही, पन्नास होतं.",
+   "checks": [
+    {
+     "name": "first question asked",
+     "expected": "missing_unit",
+     "actual": "missing_unit",
+     "passed": true
+    },
+    {
+     "name": "nothing saved before confirmation",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "review while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "save while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "all questions resolved",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "asset",
+     "expected": "P-12",
+     "actual": "P-12",
+     "passed": true
+    },
+    {
+     "name": "time",
+     "expected": "10:30",
+     "actual": "10:30",
+     "passed": true
+    },
+    {
+     "name": "symptom stopped",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "symptom vibration",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "pressure",
+     "expected": {
+      "value": 50,
+      "unit": "PSI",
+      "corrected_from": 15
+     },
+     "actual": {
+      "value": 50,
+      "unit": "PSI",
+      "corrected_from": 15
+     },
+     "passed": true
+    },
+    {
+     "name": "saved only after explicit confirmation of the reviewed revision",
+     "expected": 2,
+     "actual": 2,
+     "passed": true
+    }
+   ],
+   "passed": true,
+   "naive": {
+    "transcript": "पीकवेल पंप बंद पडला आहे। सकाळी साडे दहा वाजता व्हायब्रेशन खूप होतं, प्रेशर नाही, पन्नास होतं।",
+    "record": {
+     "system": "naive",
+     "asset": null,
+     "time": "10:30",
+     "measurements": [
+      {
+       "kind": "pressure",
+       "value": 50,
+       "unit": null,
+       "corrected_from": null,
+       "flagged": false
+      }
+     ],
+     "symptoms": {
+      "stopped": "present",
+      "vibration": "present"
+     },
+     "cause": null,
+     "flags": []
+    },
+    "risky": 1,
+    "flaws": [
+     "asset P-12 not saved, nothing asked",
+     "missing unit saved with no question"
+    ]
+   }
+  },
+  {
+   "id": "break-2-contradiction",
+   "title": "Contradicting observations",
+   "what_it_tests": "'No leakage' and 'water visible underneath' in one report. Neither may be saved as fact; one question settles it, and 'source unknown' must not become 'leakage confirmed'.",
+   "provenance": "real Prisma v3.0 transcript of Anvay's recording, 2026-11-04",
+   "transcript": "M-07 motor चालू आहे, पण आवाज येतोय. leakage नाही, थांब, खाली पाणी दिसतंय.",
+   "checks": [
+    {
+     "name": "first question asked",
+     "expected": "conflicting_observation",
+     "actual": "conflicting_observation",
+     "passed": true
+    },
+    {
+     "name": "nothing saved before confirmation",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "review while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "save while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "all questions resolved",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "asset",
+     "expected": "M-07",
+     "actual": "M-07",
+     "passed": true
+    },
+    {
+     "name": "symptom running",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "symptom noise",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "symptom water",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "symptom leakage",
+     "expected": "not_confirmed",
+     "actual": "not_confirmed",
+     "passed": true
+    },
+    {
+     "name": "saved only after explicit confirmation of the reviewed revision",
+     "expected": 2,
+     "actual": 2,
+     "passed": true
+    }
+   ],
+   "passed": true,
+   "naive": {
+    "transcript": "एम सेव्हन मोटर चालू आहे, पण आवाज येतोय, लिकेज नाही, थांब, खाली पाणी दिसतंय।",
+    "record": {
+     "system": "naive",
+     "asset": "M-07",
+     "time": null,
+     "measurements": [],
+     "symptoms": {
+      "running": "present",
+      "noise": "present",
+      "leakage": "absent",
+      "water": "present"
+     },
+     "cause": null,
+     "flags": []
+    },
+    "risky": 1,
+    "flaws": [
+     "conflicting observation saved with no question"
+    ]
+   }
+  },
+  {
+   "id": "break-3-missing-unit",
+   "title": "Missing unit",
+   "what_it_tests": "A temperature with no unit. The system must ask; it must not pick Celsius or Fahrenheit.",
+   "provenance": "real Prisma v3.0 transcript of Anvay's recording, 2026-11-04",
+   "transcript": "P-12 का temperature अस्सी है और थोड़ी आवाज आ रही है।",
+   "checks": [
+    {
+     "name": "first question asked",
+     "expected": "missing_unit",
+     "actual": "missing_unit",
+     "passed": true
+    },
+    {
+     "name": "nothing saved before confirmation",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "review while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "save while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "all questions resolved",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "asset",
+     "expected": "P-12",
+     "actual": "P-12",
+     "passed": true
+    },
+    {
+     "name": "symptom noise",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "temperature",
+     "expected": {
+      "value": 80,
+      "unit": "°C",
+      "corrected_from": null
+     },
+     "actual": {
+      "value": 80,
+      "unit": "°C",
+      "corrected_from": null
+     },
+     "passed": true
+    },
+    {
+     "name": "saved only after explicit confirmation of the reviewed revision",
+     "expected": 2,
+     "actual": 2,
+     "passed": true
+    }
+   ],
+   "passed": true,
+   "naive": {
+    "transcript": "पीएल ट्वेल्व का टेम्परेचर अस्सी है और थोड़ी आवाज आ रही है।",
+    "record": {
+     "system": "naive",
+     "asset": null,
+     "time": null,
+     "measurements": [
+      {
+       "kind": "temperature",
+       "value": 80,
+       "unit": null,
+       "corrected_from": null,
+       "flagged": false
+      }
+     ],
+     "symptoms": {
+      "noise": "present"
+     },
+     "cause": null,
+     "flags": []
+    },
+    "risky": 1,
+    "flaws": [
+     "asset P-12 not saved, nothing asked",
+     "missing unit saved with no question"
+    ]
+   }
+  },
+  {
+   "id": "break-4-ambiguous-asset",
+   "title": "Ambiguous asset",
+   "what_it_tests": "'pump twelve' matches two assets in the fictional plant. The system must ask which, not pick one. The explicitly unknown cause must stay 'unknown'.",
+   "provenance": "real Prisma v3.0 transcript of Anvay's recording, 2026-11-04",
+   "transcript": "pump बारा बंद झाला, कारण काय ते माहीत नाही.",
+   "checks": [
+    {
+     "name": "first question asked",
+     "expected": "ambiguous_asset",
+     "actual": "ambiguous_asset",
+     "passed": true
+    },
+    {
+     "name": "nothing saved before confirmation",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "review while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "save while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "all questions resolved",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "asset",
+     "expected": "P-12",
+     "actual": "P-12",
+     "passed": true
+    },
+    {
+     "name": "symptom stopped",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "cause",
+     "expected": "unknown",
+     "actual": "unknown",
+     "passed": true
+    },
+    {
+     "name": "saved only after explicit confirmation of the reviewed revision",
+     "expected": 2,
+     "actual": 2,
+     "passed": true
+    }
+   ],
+   "passed": true,
+   "naive": {
+    "transcript": "पंप बारा बंद झाला, कारण काय ते माहीत नाही।",
+    "record": {
+     "system": "naive",
+     "asset": "P-12",
+     "time": null,
+     "measurements": [],
+     "symptoms": {
+      "stopped": "present"
+     },
+     "cause": "unknown",
+     "flags": []
+    },
+    "risky": 1,
+    "flaws": [
+     "ambiguous asset: saved P-12 without asking"
+    ]
+   }
+  },
+  {
+   "id": "break-5-ambiguous-ampm",
+   "title": "Ambiguous AM/PM",
+   "what_it_tests": "'दस बजकर तीस मिनट' with no morning/evening word. The system must ask; it must not assume AM.",
+   "provenance": "real Prisma v3.0 transcript of Anvay's recording, 2026-11-04",
+   "transcript": "C-04 compressor trip हो गया। दस बजकर तीस मिनट पर pressure पंद्रह नहीं, पचास PSI था।",
+   "checks": [
+    {
+     "name": "first question asked",
+     "expected": "ambiguous_time",
+     "actual": "ambiguous_time",
+     "passed": true
+    },
+    {
+     "name": "nothing saved before confirmation",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "review while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "save while the question is open",
+     "expected": "refused",
+     "actual": "refused",
+     "passed": true
+    },
+    {
+     "name": "all questions resolved",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "asset",
+     "expected": "C-04",
+     "actual": "C-04",
+     "passed": true
+    },
+    {
+     "name": "time",
+     "expected": "10:30",
+     "actual": "10:30",
+     "passed": true
+    },
+    {
+     "name": "symptom stopped",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "pressure",
+     "expected": {
+      "value": 50,
+      "unit": "PSI",
+      "corrected_from": 15
+     },
+     "actual": {
+      "value": 50,
+      "unit": "PSI",
+      "corrected_from": 15
+     },
+     "passed": true
+    },
+    {
+     "name": "saved only after explicit confirmation of the reviewed revision",
+     "expected": 2,
+     "actual": 2,
+     "passed": true
+    }
+   ],
+   "passed": true,
+   "naive": {
+    "transcript": "सी फोर कम्प्रेसर ट्रिप हो गया, दस बजकर तीस मिनट पर प्रेशर नहीं, पचास पीएसआई था।",
+    "record": {
+     "system": "naive",
+     "asset": "C-04",
+     "time": "10:30",
+     "measurements": [
+      {
+       "kind": "pressure",
+       "value": 50,
+       "unit": "PSI",
+       "corrected_from": null,
+       "flagged": false
+      }
+     ],
+     "symptoms": {
+      "stopped": "present"
+     },
+     "cause": null,
+     "flags": []
+    },
+    "risky": 1,
+    "flaws": [
+     "time without AM/PM saved as 10:30"
+    ]
+   }
+  },
+  {
+   "id": "break-6-unknown-cause",
+   "title": "Unknown cause",
+   "what_it_tests": "The reporter says the cause is not known. It is saved as an explicit 'unknown', never filled in, and nothing blocks the save.",
+   "provenance": "synthetic text written by Claude, not a recording",
+   "transcript": "V-09 बंद झाला. कारण काय ते माहीत नाही.",
+   "checks": [
+    {
+     "name": "first question asked",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "nothing saved before confirmation",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "all questions resolved",
+     "expected": null,
+     "actual": null,
+     "passed": true
+    },
+    {
+     "name": "asset",
+     "expected": "V-09",
+     "actual": "V-09",
+     "passed": true
+    },
+    {
+     "name": "symptom stopped",
+     "expected": "present",
+     "actual": "present",
+     "passed": true
+    },
+    {
+     "name": "cause",
+     "expected": "unknown",
+     "actual": "unknown",
+     "passed": true
+    },
+    {
+     "name": "saved only after explicit confirmation of the reviewed revision",
+     "expected": 1,
+     "actual": 1,
+     "passed": true
+    }
+   ],
+   "passed": true,
+   "naive": {
+    "transcript": "V-09 बंद झाला. कारण काय ते माहीत नाही.",
+    "record": {
+     "system": "naive",
+     "asset": "V-09",
+     "time": null,
+     "measurements": [],
+     "symptoms": {
+      "stopped": "present"
+     },
+     "cause": "unknown",
+     "flags": []
+    },
+    "risky": 0,
+    "flaws": []
+   }
+  }
+ ]
+}
