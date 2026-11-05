@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.venv
+**/__pycache__
+**/*.pyc
+*.db
+data
+tmp
+docs
+scripts
+clariflow_context.md
+frontend/node_modules
+frontend/dist
+fixtures/audio/private
+**/.pytest_cache
+backend/tests
