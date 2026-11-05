@@ -1,0 +1,66 @@
+{
+ "_status": "DRAFT. Fictional plant roles. SIMULATED: nothing is sent to anyone. Edit this file to change who would be notified; role names in mr/hi need native-speaker review.",
+ "levels": {
+  "can_wait": {
+   "notify": [
+    "maintenance_queue"
+   ]
+  },
+  "today": {
+   "notify": [
+    "shift_supervisor"
+   ]
+  },
+  "stop_work": {
+   "notify": [
+    "maintenance_head",
+    "production_supervisor"
+   ]
+  },
+  "emergency": {
+   "notify": [
+    "plant_emergency_team",
+    "shift_supervisor",
+    "maintenance_head"
+   ]
+  },
+  "unknown": {
+   "notify": [
+    "shift_supervisor"
+   ],
+   "note": "urgency not given: the shift supervisor decides"
+  }
+ },
+ "roles": {
+  "maintenance_queue": {
+   "en": "Maintenance queue",
+   "mr": "देखभाल रांग",
+   "hi": "रखरखाव कतार"
+  },
+  "shift_supervisor": {
+   "en": "Shift supervisor",
+   "mr": "शिफ्ट सुपरवायझर",
+   "hi": "शिफ्ट सुपरवाइज़र"
+  },
+  "maintenance_head": {
+   "en": "Maintenance head",
+   "mr": "देखभाल प्रमुख",
+   "hi": "रखरखाव प्रमुख"
+  },
+  "production_supervisor": {
+   "en": "Production supervisor",
+   "mr": "उत्पादन सुपरवायझर",
+   "hi": "उत्पादन सुपरवाइज़र"
+  },
+  "plant_emergency_team": {
+   "en": "Plant emergency team",
+   "mr": "प्लांट आपत्कालीन टीम",
+   "hi": "प्लांट आपातकालीन टीम"
+  }
+ },
+ "emergency_notice": {
+  "en": "If anyone is in danger, call your site emergency number now. This demo cannot dispatch anyone.",
+  "mr": "कोणी धोक्यात असेल तर आत्ताच तुमच्या साइटचा आपत्कालीन क्रमांक लावा. हे डेमो कोणालाही पाठवू शकत नाही.",
+  "hi": "अगर कोई खतरे में है तो अभी अपनी साइट का आपातकालीन नंबर मिलाएँ। यह डेमो किसी को भेज नहीं सकता।"
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "_status": "DRAFT: Marathi and Hindi wording written by Claude, needs native-speaker review. Templates only; no free-form generation.",
+ "kind_names": {
+  "pressure": {
+   "en": "pressure",
+   "mr": "प्रेशर",
+   "hi": "प्रेशर"
+  },
+  "temperature": {
+   "en": "temperature",
+   "mr": "तापमान",
+   "hi": "तापमान"
+  },
+  "speed": {
+   "en": "speed",
+   "mr": "स्पीड",
+   "hi": "स्पीड"
+  }
+ },
+ "questions": {
+  "ambiguous_asset": {
+   "en": "I heard \"{mention}\". Which asset do you mean: {options}?",
+   "mr": "मी \"{mention}\" ऐकलं. तुम्हाला कोणता असेट म्हणायचा आहे: {options}?",
+   "hi": "मैंने \"{mention}\" सुना। आपका मतलब कौन सा असेट है: {options}?"
+  },
+  "unknown_asset": {
+   "en": "Which asset is this report about?",
+   "mr": "हा रिपोर्ट कोणत्या असेटबद्दल आहे?",
+   "hi": "यह रिपोर्ट किस असेट के बारे में है?"
+  },
+  "conflicting_observation_leak": {
+   "en": "You said \"{a}\", and also \"{b}\". Is a leak confirmed, or is the source of the water unknown?",
+   "mr": "तुम्ही \"{a}\" म्हणालात, आणि \"{b}\" असंही म्हणालात. गळती निश्चित आहे का, की पाण्याचा स्रोत माहीत नाही?",
+   "hi": "आपने \"{a}\" कहा, और \"{b}\" भी कहा। क्या लीकेज पक्का है, या पानी का स्रोत पता नहीं है?"
+  },
+  "conflicting_observation": {
+   "en": "You said \"{a}\" and also \"{b}\". Which one is correct?",
+   "mr": "तुम्ही \"{a}\" आणि \"{b}\" असं दोन्ही म्हणालात. कोणतं बरोबर आहे?",
+   "hi": "आपने \"{a}\" और \"{b}\" दोनों कहा। कौन सा सही है?"
+  },
+  "missing_unit": {
+   "en": "You said {kind} {value}. What is the unit?",
+   "mr": "तुम्ही {kind} {value} म्हणालात. त्याचं एकक काय आहे?",
+   "hi": "आपने {kind} {value} कहा। इसकी इकाई क्या है?"
+  },
+  "ambiguous_unit": {
+   "en": "You said {value} {raw_unit}. Which exact unit do you mean?",
+   "mr": "तुम्ही {value} {raw_unit} म्हणालात. नेमकं एकक कोणतं?",
+   "hi": "आपने {value} {raw_unit} कहा। सही इकाई कौन सी है?"
+  },
+  "ambiguous_unit_temperature": {
+   "en": "You said {kind} {value} {raw_unit}. Is that Celsius or Fahrenheit?",
+   "mr": "तुम्ही {kind} {value} {raw_unit} म्हणालात. ते सेल्सिअस आहे की फॅरेनहाइट?",
+   "hi": "आपने {kind} {value} {raw_unit} कहा। क्या वह सेल्सियस है या फारेनहाइट?"
+  },
+  "ambiguous_time": {
+   "en": "You said {time}. Was that morning (AM) or evening (PM), or is the time unknown?",
+   "mr": "तुम्ही {time} म्हणालात. ते सकाळचे (AM) होते की संध्याकाळचे (PM), की वेळ माहीत नाही?",
+   "hi": "आपने {time} कहा। क्या वह सुबह (AM) थी या शाम (PM), या समय पता नहीं है?"
+  },
+  "missing_symptom": {
+   "en": "What did you observe on the equipment?",
+   "mr": "उपकरणावर तुम्ही काय पाहिलं?",
+   "hi": "उपकरण पर आपने क्या देखा?"
+  },
+  "missing_value": {
+   "en": "I heard \"{mention}\" but could not read the number. What was the {kind} value?",
+   "mr": "मी \"{mention}\" ऐकलं, पण आकडा नीट समजला नाही. {kind} किती होतं?",
+   "hi": "मैंने \"{mention}\" सुना, लेकिन संख्या समझ नहीं आई। {kind} कितना था?"
+  },
+  "missing_urgency": {
+   "en": "How urgent is this?",
+   "mr": "हे किती तातडीचं आहे?",
+   "hi": "यह कितना जरूरी है?"
+  },
+  "unit_mismatch": {
+   "en": "You said {kind} {value} {raw_unit}, but {raw_unit} is not a unit for {kind}. What is the unit?",
+   "mr": "तुम्ही {kind} {value} {raw_unit} म्हणालात, पण {raw_unit} हे {kind} चं एकक नाही. योग्य एकक कोणतं?",
+   "hi": "आपने {kind} {value} {raw_unit} कहा, लेकिन {raw_unit} {kind} की इकाई नहीं है। सही इकाई कौन सी है?"
+  }
+ }
+}
