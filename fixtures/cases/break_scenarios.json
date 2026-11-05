@@ -1,0 +1,216 @@
+{
+ "_note": "Break mode: six labelled scenarios run through the SAME production pipeline (extractor -> reducer -> issues -> question -> answer -> review -> confirm). Reports use real Prisma v3.0 transcripts of Anvay's recordings (clip ids refer to fixtures/cases/eval_clips.json) except where marked synthetic text. The follow-up answers are scripted, truthful replies written by Claude. A passing run shows these six handled cases, not general robustness.",
+ "scenarios": [
+  {
+   "id": "break-1-correction",
+   "title": "Spoken correction",
+   "clip": "ME1",
+   "what_it_tests": "The speaker says one pressure, corrects it, and never states a unit. The corrected value must win, the old one must stay visible as history, and the missing unit must be asked, not assumed.",
+   "turns": [
+    {
+     "as": "report",
+     "from_clip": "ME1"
+    },
+    {
+     "as": "answer",
+     "text": "PSI"
+    },
+    {
+     "as": "answer",
+     "text": "can wait",
+     "answers": "missing_urgency"
+    }
+   ],
+   "first_question": "missing_unit",
+   "final": {
+    "asset": "P-12",
+    "time": "10:30",
+    "symptoms": {
+     "stopped": "present",
+     "vibration": "present"
+    },
+    "measurements": [
+     {
+      "kind": "pressure",
+      "value": 50,
+      "unit": "PSI",
+      "corrected_from": 15
+     }
+    ],
+    "urgency": "can_wait"
+   }
+  },
+  {
+   "id": "break-2-contradiction",
+   "title": "Contradicting observations",
+   "clip": "ME2",
+   "what_it_tests": "'No leakage' and 'water visible underneath' in one report. Neither may be saved as fact; one question settles it, and 'source unknown' must not become 'leakage confirmed'.",
+   "turns": [
+    {
+     "as": "report",
+     "from_clip": "ME2"
+    },
+    {
+     "as": "answer",
+     "text": "पाण्याचा स्रोत माहीत नाही"
+    },
+    {
+     "as": "answer",
+     "text": "आज",
+     "answers": "missing_urgency"
+    }
+   ],
+   "first_question": "conflicting_observation",
+   "final": {
+    "asset": "M-07",
+    "symptoms": {
+     "running": "present",
+     "noise": "present",
+     "water": "present",
+     "leakage": "not_confirmed"
+    },
+    "urgency": "today"
+   }
+  },
+  {
+   "id": "break-3-missing-unit",
+   "title": "Missing unit",
+   "clip": "HE3",
+   "what_it_tests": "A temperature with no unit. The system must ask; it must not pick Celsius or Fahrenheit.",
+   "turns": [
+    {
+     "as": "report",
+     "from_clip": "HE3"
+    },
+    {
+     "as": "answer",
+     "text": "सेल्सियस"
+    },
+    {
+     "as": "answer",
+     "text": "रोको",
+     "answers": "missing_urgency"
+    }
+   ],
+   "first_question": "missing_unit",
+   "final": {
+    "asset": "P-12",
+    "symptoms": {
+     "noise": "present"
+    },
+    "measurements": [
+     {
+      "kind": "temperature",
+      "value": 80,
+      "unit": "°C",
+      "corrected_from": null
+     }
+    ],
+    "urgency": "stop_work"
+   }
+  },
+  {
+   "id": "break-4-ambiguous-asset",
+   "title": "Ambiguous asset",
+   "clip": "ME3",
+   "what_it_tests": "'pump twelve' matches two assets in the fictional plant. The system must ask which, not pick one. The explicitly unknown cause must stay 'unknown'.",
+   "turns": [
+    {
+     "as": "report",
+     "from_clip": "ME3"
+    },
+    {
+     "as": "answer",
+     "text": "P-12"
+    },
+    {
+     "as": "answer",
+     "text": "emergency",
+     "answers": "missing_urgency"
+    }
+   ],
+   "first_question": "ambiguous_asset",
+   "final": {
+    "asset": "P-12",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "cause": "unknown",
+    "urgency": "emergency"
+   }
+  },
+  {
+   "id": "break-5-ambiguous-ampm",
+   "title": "Ambiguous AM/PM",
+   "clip": "HE1",
+   "what_it_tests": "'दस बजकर तीस मिनट' with no morning/evening word. The system must ask; it must not assume AM.",
+   "turns": [
+    {
+     "as": "report",
+     "from_clip": "HE1"
+    },
+    {
+     "as": "answer",
+     "text": "सुबह"
+    },
+    {
+     "as": "answer",
+     "text": "इंतजार",
+     "answers": "missing_urgency"
+    }
+   ],
+   "first_question": "ambiguous_time",
+   "final": {
+    "asset": "C-04",
+    "time": "10:30",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "measurements": [
+     {
+      "kind": "pressure",
+      "value": 50,
+      "unit": "PSI",
+      "corrected_from": 15
+     }
+    ],
+    "urgency": "can_wait"
+   }
+  },
+  {
+   "id": "break-6-unknown-cause",
+   "title": "Unknown cause",
+   "clip": null,
+   "provenance": "synthetic text written by Claude, not a recording",
+   "what_it_tests": "The reporter says the cause is not known. It is saved as an explicit 'unknown', never filled in, and nothing blocks the save.",
+   "turns": [
+    {
+     "as": "report",
+     "text": "V-09 बंद झाला. कारण काय ते माहीत नाही."
+    },
+    {
+     "as": "answer",
+     "text": "माहीत नाही",
+     "answers": "missing_urgency"
+    }
+   ],
+   "first_question": "missing_urgency",
+   "final": {
+    "asset": "V-09",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "cause": "unknown",
+    "urgency": "unknown"
+   },
+   "truth": {
+    "asset": "V-09",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "cause": "unknown",
+    "flags": []
+   }
+  }
+ ]
+}

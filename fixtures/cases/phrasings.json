@@ -1,0 +1,739 @@
+{
+ "_note": "Synthetic transcripts WRITTEN BY CLAUDE as plausible code-mixed technician speech to probe extraction coverage. They are NOT real Prisma output and NOT recordings; native speakers should review/replace them. 'known_gap' = a documented limit we expect to fail today (xfail).",
+ "cases": [
+  {
+   "id": "mr-basic",
+   "text": "P-12 pump बंद पडला आहे. pressure चाळीस PSI होतं.",
+   "expect": {
+    "asset": "P-12",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "measurements": [
+     [
+      "pressure",
+      40,
+      "PSI"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "mr-celsius",
+   "text": "C-04 मध्ये खूप आवाज येतोय, तापमान नव्वद डिग्री सेल्सिअस आहे.",
+   "expect": {
+    "asset": "C-04",
+    "symptoms": {
+     "noise": "present"
+    },
+    "measurements": [
+     [
+      "temperature",
+      90,
+      "°C"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "mr-degree-ambiguous",
+   "text": "M-07 गरम झाली आहे, temperature पंचाऐंशी डिग्री आहे.",
+   "expect": {
+    "asset": "M-07",
+    "question": "ambiguous_unit"
+   },
+   "_note": "uses the spelling पंचाऐंशी (added to the lexicon after this probe found it missing)"
+  },
+  {
+   "id": "mr-running-vibration",
+   "text": "F-03 fan चालू आहे पण vibration जास्त आहे.",
+   "expect": {
+    "asset": "F-03",
+    "symptoms": {
+     "running": "present",
+     "vibration": "present"
+    },
+    "question": null
+   }
+  },
+  {
+   "id": "mr-time-night",
+   "text": "रात्री अकरा वाजता P-21 बंद झाला.",
+   "expect": {
+    "asset": "P-21",
+    "time": "23:00",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "question": null
+   }
+  },
+  {
+   "id": "mr-time-sade",
+   "text": "सकाळी साडेसहा वाजता G-06 मध्ये आवाज सुरू झाला. आवाज खूप आहे.",
+   "expect": {
+    "asset": "G-06",
+    "time": "06:30",
+    "symptoms": {
+     "noise": "present"
+    },
+    "question": null
+   }
+  },
+  {
+   "id": "mr-time-ampm-missing",
+   "text": "सव्वा आठ वाजता H-11 बंद पडला.",
+   "expect": {
+    "asset": "H-11",
+    "question": "ambiguous_time"
+   }
+  },
+  {
+   "id": "mr-correction-unit",
+   "text": "B-02 बंद आहे. pressure साठ नाही, सत्तर PSI होतं.",
+   "expect": {
+    "asset": "B-02",
+    "measurements": [
+     [
+      "pressure",
+      70,
+      "PSI"
+     ]
+    ],
+    "corrected": [
+     [
+      "pressure",
+      60
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "mr-contradiction",
+   "text": "T-08 मध्ये leakage नाही. पण खाली पाणी साचलंय.",
+   "expect": {
+    "asset": "T-08",
+    "question": "conflicting_observation"
+   }
+  },
+  {
+   "id": "mr-no-asset",
+   "text": "मशीन बंद पडली आहे आणि खूप आवाज येतोय.",
+   "expect": {
+    "asset": null,
+    "question": "unknown_asset"
+   }
+  },
+  {
+   "id": "mr-cause-unknown",
+   "text": "V-09 बंद झाला. कारण काय ते माहीत नाही.",
+   "expect": {
+    "asset": "V-09",
+    "cause": "unknown",
+    "question": null
+   }
+  },
+  {
+   "id": "mr-action",
+   "text": "M-07 मध्ये heat येत होती, मग मी बंद केला.",
+   "expect": {
+    "asset": "M-07",
+    "symptoms": {
+     "heat": "present"
+    },
+    "action": "turned_off",
+    "question": null
+   }
+  },
+  {
+   "id": "mr-unit-missing",
+   "text": "P-12 बंद आहे. तापमान ऐंशी होतं.",
+   "expect": {
+    "asset": "P-12",
+    "question": "missing_unit"
+   }
+  },
+  {
+   "id": "hi-basic",
+   "text": "C-04 compressor बंद हो गया। pressure तीस PSI है।",
+   "expect": {
+    "asset": "C-04",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "measurements": [
+     [
+      "pressure",
+      30,
+      "PSI"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "hi-noise-degree",
+   "text": "M-07 मोटर में बहुत शोर है और तापमान पचहत्तर डिग्री है।",
+   "expect": {
+    "asset": "M-07",
+    "symptoms": {
+     "noise": "present"
+    },
+    "question": "ambiguous_unit"
+   }
+  },
+  {
+   "id": "hi-time-afternoon",
+   "text": "दोपहर दो बजे fan F-03 रुक गया।",
+   "expect": {
+    "asset": "F-03",
+    "time": "14:00",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "question": null
+   }
+  },
+  {
+   "id": "hi-time-night-minutes",
+   "text": "रात को ग्यारह बजकर बीस मिनट पर P-21 बंद हो गया।",
+   "expect": {
+    "asset": "P-21",
+    "time": "23:20",
+    "question": null
+   }
+  },
+  {
+   "id": "hi-contradiction",
+   "text": "P-12 में leakage नहीं है। पानी नीचे दिख रहा है।",
+   "expect": {
+    "asset": "P-12",
+    "question": "conflicting_observation"
+   }
+  },
+  {
+   "id": "hi-cause-unknown",
+   "text": "G-06 बंद हो गया, कारण पता नहीं।",
+   "expect": {
+    "asset": "G-06",
+    "cause": "unknown",
+    "question": null
+   }
+  },
+  {
+   "id": "hi-correction",
+   "text": "H-11 का pressure सौ नहीं, एक सौ बीस bar था।",
+   "expect": {
+    "asset": "H-11",
+    "measurements": [
+     [
+      "pressure",
+      120,
+      "bar"
+     ]
+    ],
+    "corrected": [
+     [
+      "pressure",
+      100
+     ]
+    ]
+   }
+  },
+  {
+   "id": "hi-sequence-not-correction",
+   "text": "P-21 का pressure बीस bar था, फिर घटकर दस bar हो गया।",
+   "expect": {
+    "asset": "P-21",
+    "measurements": [
+     [
+      "pressure",
+      20,
+      "bar"
+     ],
+     [
+      "pressure",
+      10,
+      "bar"
+     ]
+    ],
+    "question": "missing_symptom"
+   }
+  },
+  {
+   "id": "en-correction-time",
+   "text": "Compressor C-04 tripped at ten thirty AM. Pressure was fifteen, no, fifty PSI.",
+   "expect": {
+    "asset": "C-04",
+    "time": "10:30",
+    "symptoms": {
+     "stopped": "present"
+    },
+    "measurements": [
+     [
+      "pressure",
+      50,
+      "PSI"
+     ]
+    ],
+    "corrected": [
+     [
+      "pressure",
+      15
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "en-celsius",
+   "text": "Motor M-07 is overheating, temperature is eighty five degrees Celsius.",
+   "expect": {
+    "asset": "M-07",
+    "symptoms": {
+     "heat": "present"
+    },
+    "measurements": [
+     [
+      "temperature",
+      85,
+      "°C"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "en-no-leak",
+   "text": "Fan F-03 stopped. There is no leakage.",
+   "expect": {
+    "asset": "F-03",
+    "symptoms": {
+     "stopped": "present",
+     "leakage": "absent"
+    },
+    "question": null
+   }
+  },
+  {
+   "id": "en-quarter-to",
+   "text": "Pump P-21 stopped at quarter to five in the evening.",
+   "expect": {
+    "asset": "P-21",
+    "time": "16:45",
+    "question": null
+   }
+  },
+  {
+   "id": "en-running-noise",
+   "text": "P-12 is running but there is a loud noise and some vibration.",
+   "expect": {
+    "asset": "P-12",
+    "symptoms": {
+     "running": "present",
+     "noise": "present",
+     "vibration": "present"
+    },
+    "question": null
+   }
+  },
+  {
+   "id": "en-digits-lower",
+   "text": "P-12 stopped, pressure 45 psi.",
+   "expect": {
+    "asset": "P-12",
+    "measurements": [
+     [
+      "pressure",
+      45,
+      "PSI"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "en-ambiguous-alias",
+   "text": "Pump twelve is making noise.",
+   "expect": {
+    "question": "ambiguous_asset"
+   }
+  },
+  {
+   "id": "en-two-assets",
+   "text": "P-12 and M-07 both stopped.",
+   "expect": {
+    "question": "ambiguous_asset"
+   }
+  },
+  {
+   "id": "mix-1",
+   "text": "P-12 pump चालू आहे but vibration वाढलंय, pressure forty five PSI.",
+   "expect": {
+    "asset": "P-12",
+    "symptoms": {
+     "running": "present",
+     "vibration": "present"
+    },
+    "measurements": [
+     [
+      "pressure",
+      45,
+      "PSI"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "mix-2",
+   "text": "Conveyor motor हीट येतेय, तापमान sixty degree Celsius.",
+   "expect": {
+    "asset": "M-07",
+    "symptoms": {
+     "heat": "present"
+    },
+    "measurements": [
+     [
+      "temperature",
+      60,
+      "°C"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "decimal-point-en",
+   "text": "P-12 stopped, pressure two point five bar.",
+   "expect": {
+    "asset": "P-12",
+    "measurements": [
+     [
+      "pressure",
+      2.5,
+      "bar"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "decimal-sade-mr",
+   "text": "P-12 बंद आहे, pressure साडे तीन bar आहे.",
+   "expect": {
+    "asset": "P-12",
+    "measurements": [
+     [
+      "pressure",
+      3.5,
+      "bar"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "decimal-half-en",
+   "text": "P-12 stopped, pressure three and a half bar.",
+   "expect": {
+    "asset": "P-12",
+    "measurements": [
+     [
+      "pressure",
+      3.5,
+      "bar"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "decimal-dedh-hi",
+   "text": "P-12 बंद है, pressure डेढ़ bar है।",
+   "expect": {
+    "asset": "P-12",
+    "measurements": [
+     [
+      "pressure",
+      1.5,
+      "bar"
+     ]
+    ],
+    "question": null
+   }
+  },
+  {
+   "id": "time-correction-en",
+   "text": "P-12 stopped at ten thirty AM, no, ten forty AM.",
+   "expect": {
+    "asset": "P-12",
+    "time": "10:40",
+    "question": null,
+    "time_corrected_from": "10:30"
+   }
+  },
+  {
+   "id": "time-correction-mr",
+   "text": "P-12 बंद पडला, सकाळी दहा वाजून तीस मिनिटांनी, नाही, दहा वाजून चाळीस मिनिटांनी.",
+   "expect": {
+    "asset": "P-12",
+    "time_corrected_from": "10:30",
+    "question": "ambiguous_time"
+   },
+   "_note": "the corrected time has no day-part, so AM/PM is asked rather than inherited from the old time"
+  },
+  {
+   "id": "mr-unreadable-number",
+   "text": "M-07 गरम झाली आहे, तापमान पंच्यांशीं डिग्री आहे.",
+   "expect": {
+    "asset": "M-07",
+    "question": "missing_value"
+   },
+   "_note": "a number spelling the lexicon lacks: the system asks instead of silently dropping the measurement"
+  },
+  {
+   "id": "lone-correction",
+   "text": "P-12 बंद आहे. pressure नाही, पन्नास PSI होतं.",
+   "expect": {
+    "asset": "P-12",
+    "measurements": [
+     [
+      "pressure",
+      50,
+      "PSI"
+     ]
+    ],
+    "dropped_old": true,
+    "question": null
+   },
+   "_note": "the corrected-away value was not transcribed: flagged (non-blocking), not hidden"
+  },
+  {
+   "id": "heldout1-h1",
+   "text": "C-04 कंप्रेसर बंद पडलाय, प्रेशर शून्य दिसतंय.",
+   "expect": {
+    "asset": "C-04",
+    "symptoms": {
+     "stopped": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h2",
+   "text": "आज सकाळी नऊ वाजता B-02 belt थांबला आणि खूप आवाज येत होता.",
+   "expect": {
+    "asset": "B-02",
+    "time": "09:00",
+    "symptoms": {
+     "noise": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h3",
+   "text": "G-06 gearbox मधून गरम वास येतोय, तापमान एकशे वीस डिग्री सेल्सिअस.",
+   "expect": {
+    "asset": "G-06",
+    "measurements": [
+     [
+      "temperature",
+      120,
+      "°C"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "heldout1-h4",
+   "text": "H-11 press ka pressure दो सौ bar tha, abhi बंद है।",
+   "expect": {
+    "asset": "H-11",
+    "measurements": [
+     [
+      "pressure",
+      200,
+      "bar"
+     ]
+    ],
+    "symptoms": {
+     "stopped": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h5",
+   "text": "T-08 tower fan बंद है, पानी लीक हो रहा है।",
+   "expect": {
+    "asset": "T-08",
+    "symptoms": {
+     "stopped": "present",
+     "leakage": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h6",
+   "text": "V-09 valve is leaking, steam is coming out, pressure forty PSI.",
+   "expect": {
+    "asset": "V-09",
+    "symptoms": {
+     "leakage": "present"
+    },
+    "measurements": [
+     [
+      "pressure",
+      40,
+      "PSI"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "heldout1-h7",
+   "text": "The conveyor belt B-02 stopped at half past two in the afternoon.",
+   "expect": {
+    "asset": "B-02",
+    "time": "14:30",
+    "symptoms": {
+     "stopped": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h8",
+   "text": "M-07 मोटर चालू आहे, vibration नाही, आवाज पण नाही.",
+   "expect": {
+    "asset": "M-07",
+    "symptoms": {
+     "running": "present",
+     "vibration": "absent",
+     "noise": "absent"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h9",
+   "text": "F-03 fan बंद पड़ा, रात के बारह बजे।",
+   "expect": {
+    "asset": "F-03",
+    "time": "00:00"
+   }
+  },
+  {
+   "id": "heldout1-h10",
+   "text": "P-21 pump चालू है, pressure अस्सी PSI, कोई problem नहीं।",
+   "expect": {
+    "asset": "P-21",
+    "measurements": [
+     [
+      "pressure",
+      80,
+      "PSI"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "heldout1-h11",
+   "text": "Gearbox G-06 temperature is ninety, I mean ninety five degrees Celsius.",
+   "expect": {
+    "asset": "G-06",
+    "measurements": [
+     [
+      "temperature",
+      95,
+      "°C"
+     ]
+    ],
+    "corrected": [
+     [
+      "temperature",
+      90
+     ]
+    ]
+   }
+  },
+  {
+   "id": "heldout1-h12",
+   "text": "H-11 बंद झालं, दुपारी चार वाजता, कारण माहीत नाही.",
+   "expect": {
+    "asset": "H-11",
+    "time": "16:00",
+    "cause": "unknown"
+   }
+  },
+  {
+   "id": "heldout1-h13",
+   "text": "compressor trip हो गया, pressure पैंतालीस PSI तक गया।",
+   "expect": {
+    "asset": "C-04",
+    "measurements": [
+     [
+      "pressure",
+      45,
+      "PSI"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "heldout1-h14",
+   "text": "पंप 21 बंद आहे आणि थोडं पाणी गळतंय.",
+   "expect": {
+    "asset": "P-21",
+    "symptoms": {
+     "stopped": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h15",
+   "text": "B-02 stopped; speed was twelve hundred RPM then dropped.",
+   "expect": {
+    "asset": "B-02",
+    "measurements": [
+     [
+      "speed",
+      1200,
+      "RPM"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "heldout1-h16",
+   "text": "M-07 में आवाज नहीं है लेकिन vibration बहुत है।",
+   "expect": {
+    "asset": "M-07",
+    "symptoms": {
+     "noise": "absent",
+     "vibration": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h17",
+   "text": "T-08 मध्ये ऑइल leak होतंय आणि पंखा बंद आहे.",
+   "expect": {
+    "asset": "T-08",
+    "symptoms": {
+     "leakage": "present",
+     "stopped": "present"
+    }
+   }
+  },
+  {
+   "id": "heldout1-h18",
+   "text": "G-06 sound kar raha hai, temperature 70 degree.",
+   "expect": {
+    "asset": "G-06",
+    "question": "ambiguous_unit"
+   }
+  }
+ ],
+ "_batches": "batch 1 = first 39 cases (used while fixing gaps). batch 2 'heldout1' = 18 cases written BEFORE looking at results: 15/18 passed on the first run; failures were Marathi 'एकशे' (120 read as 20), a verb contraction, and a missing 'पंप 21' alias. Fixed afterwards, so batch 2 is no longer held-out."
+}

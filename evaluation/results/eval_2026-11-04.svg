@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" role="img" aria-label="Risky fields saved without a question: naive baseline versus Clariflow">
+<style>text{font:14px system-ui,sans-serif;fill:#1f2937}.s{font-size:12px;fill:#4b5563}.t{font-size:18px;font-weight:600}@media (prefers-color-scheme:dark){text{fill:#e5e7eb}.s{fill:#9ca3af}}</style>
+<text class="t" x="20" y="30">Risky fields saved without a question</text>
+<text class="s" x="20" y="52">Wrong or assumed values, plus ambiguities saved with no question. Fewer is better.</text>
+<rect x="20" y="66" width="12" height="12" fill="#9a3412"/><text class="s" x="38" y="77">wrong or assumed value</text>
+<rect x="200" y="66" width="12" height="12" fill="#fb923c"/><text class="s" x="218" y="77">ambiguity saved, no question</text>
+<text class="s" x="20" y="104">9 real recordings (recorded transcripts)</text>
+<text x="240" y="129" text-anchor="end">Naive baseline</text>
+<rect x="250" y="110" width="76.2" height="28" fill="#9a3412"/>
+<rect x="326.2" y="110" width="76.2" height="28" fill="#fb923c"/>
+<text x="410.3" y="129">6 of 34 checked items</text>
+<text x="240" y="179" text-anchor="end">Clariflow</text>
+<text x="258.0" y="179">0 of 34 checked items</text>
+<text class="s" x="20" y="204">57 written transcripts (same text to both systems)</text>
+<text x="240" y="229" text-anchor="end">Naive baseline</text>
+<rect x="250" y="210" width="177.7" height="28" fill="#9a3412"/>
+<rect x="427.7" y="210" width="152.3" height="28" fill="#fb923c"/>
+<text x="588.0" y="229">13 of 140 checked items</text>
+<text x="240" y="279" text-anchor="end">Clariflow</text>
+<text x="258.0" y="279">0 of 140 checked items</text>
+<text class="s" x="20" y="324">Recorded Prisma v3.0 transcripts, 2026-11-04. Naive = a baseline we wrote, not a real product.</text>
+<text class="s" x="20" y="342">Clariflow counts are its draft before any human answer; it cannot save until questions are resolved.</text>
+<text class="s" x="20" y="360">Truth written by the code author; one speaker, quiet room; the written set was tuned against. Not a general accuracy claim.</text>
+</svg>
