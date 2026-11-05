@@ -1,0 +1,15 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.db
+node_modules/
+frontend/dist/
+fixtures/audio/private/
+tmp/
+data/
+docs
+clariflow_context.md
+CLAUDE.md
+# derived noise copies of the demo clips (regenerate with scripts/make_noisy.py)
+fixtures/audio/simulated/

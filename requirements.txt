@@ -1,0 +1,10 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+sqlalchemy>=2.0
+httpx>=0.27
+python-multipart>=0.0.9
+python-dotenv>=1.0
+imageio-ffmpeg>=0.5  # ffmpeg binary: browser audio (WebM/MP4) -> WAV, and the noise script
+numpy>=1.26  # scripts/make_noisy.py only
+pytest>=8.0
