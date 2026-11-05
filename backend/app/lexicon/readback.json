@@ -1,0 +1,392 @@
+{
+ "_status": "DRAFT: Marathi and Hindi wording written by Claude from its own knowledge. Needs native-speaker review. Templates only; no free-form generation.",
+ "symptoms": {
+  "stopped": {
+   "en": "stopped",
+   "mr": "बंद पडलं",
+   "hi": "बंद हो गया"
+  },
+  "running": {
+   "en": "running",
+   "mr": "चालू आहे",
+   "hi": "चालू है"
+  },
+  "vibration": {
+   "en": "vibration",
+   "mr": "व्हायब्रेशन",
+   "hi": "वाइब्रेशन"
+  },
+  "noise": {
+   "en": "noise",
+   "mr": "आवाज",
+   "hi": "आवाज़"
+  },
+  "leakage": {
+   "en": "leakage",
+   "mr": "गळती",
+   "hi": "लीकेज"
+  },
+  "water": {
+   "en": "water observed",
+   "mr": "पाणी दिसलं",
+   "hi": "पानी दिखा"
+  },
+  "heat": {
+   "en": "heat",
+   "mr": "गरमी",
+   "hi": "गर्मी"
+  },
+  "smoke": {
+   "en": "smoke",
+   "mr": "धूर",
+   "hi": "धुआं"
+  },
+  "fire": {
+   "en": "fire",
+   "mr": "आग",
+   "hi": "आग"
+  },
+  "broken": {
+   "en": "broken",
+   "mr": "तुटलं / बिघडलं",
+   "hi": "खराब / टूटा"
+  },
+  "jammed": {
+   "en": "jammed",
+   "mr": "जाम झालं",
+   "hi": "जाम हो गया"
+  },
+  "smell": {
+   "en": "smell",
+   "mr": "वास",
+   "hi": "बदबू / गंध"
+  },
+  "sparks": {
+   "en": "sparks",
+   "mr": "ठिणग्या",
+   "hi": "चिंगारी"
+  }
+ },
+ "kinds": {
+  "pressure": {
+   "en": "Pressure",
+   "mr": "प्रेशर",
+   "hi": "प्रेशर"
+  },
+  "temperature": {
+   "en": "Temperature",
+   "mr": "तापमान",
+   "hi": "तापमान"
+  },
+  "speed": {
+   "en": "Speed",
+   "mr": "स्पीड",
+   "hi": "स्पीड"
+  },
+  "voltage": {
+   "en": "Voltage",
+   "mr": "व्होल्टेज",
+   "hi": "वोल्टेज"
+  },
+  "current": {
+   "en": "Current",
+   "mr": "करंट",
+   "hi": "करंट"
+  },
+  "percent": {
+   "en": "Percentage",
+   "mr": "टक्केवारी",
+   "hi": "प्रतिशत"
+  },
+  "length": {
+   "en": "Length",
+   "mr": "लांबी",
+   "hi": "लंबाई"
+  },
+  "volume": {
+   "en": "Volume",
+   "mr": "आकारमान",
+   "hi": "मात्रा"
+  },
+  "frequency": {
+   "en": "Frequency",
+   "mr": "फ्रिक्वेन्सी",
+   "hi": "फ्रीक्वेंसी"
+  },
+  "power": {
+   "en": "Power",
+   "mr": "पॉवर",
+   "hi": "पावर"
+  }
+ },
+ "actions": {
+  "turned_off": {
+   "en": "turned off",
+   "mr": "बंद केलं",
+   "hi": "बंद किया"
+  }
+ },
+ "templates": {
+  "en": {
+   "asset": "Asset {id}, {name}.",
+   "no_asset": "Asset not identified.",
+   "observed": "Observed: {list}.",
+   "absent": "Reported not present: {list}.",
+   "not_confirmed": "Not confirmed: {list} (source unknown).",
+   "time": "Time: {t}{fix}.",
+   "time_unknown": "Time: unknown{fix}.",
+   "time_fix": " (corrected from {old})",
+   "measure": "{kind} {value} {unit}{fix}.",
+   "measure_unknown": "{kind} value unknown.",
+   "unit_unknown": "unit unknown",
+   "unit_none": "no unit",
+   "measure_fix": " (corrected from {old})",
+   "dropped": " (a correction was heard but the earlier value was not transcribed)",
+   "cause_unknown": "Cause: unknown.",
+   "cause_reported": "Cause as reported: {c}.",
+   "cause_none": "Cause: not reported.",
+   "action": "Action taken: {a}.",
+   "join": ", ",
+   "urgency": "Urgency: {u}.",
+   "notify": "Would notify: {r}."
+  },
+  "mr": {
+   "asset": "असेट {id}, {name}.",
+   "no_asset": "असेट ओळखला गेला नाही.",
+   "observed": "निरीक्षण: {list}.",
+   "absent": "नाही असं सांगितलं: {list}.",
+   "not_confirmed": "निश्चित नाही: {list} (स्रोत माहीत नाही).",
+   "time": "वेळ: {t}{fix}.",
+   "time_unknown": "वेळ: माहीत नाही{fix}.",
+   "time_fix": " ({old} वरून दुरुस्त केलं)",
+   "measure": "{kind} {value} {unit}{fix}.",
+   "measure_unknown": "{kind} किती ते माहीत नाही.",
+   "unit_unknown": "एकक माहीत नाही",
+   "unit_none": "एकक नाही",
+   "measure_fix": " ({old} वरून दुरुस्त केलं)",
+   "dropped": " (दुरुस्ती ऐकली, पण आधीचा आकडा मजकुरात आला नाही)",
+   "cause_unknown": "कारण: माहीत नाही.",
+   "cause_reported": "सांगितलेलं कारण: {c}.",
+   "cause_none": "कारण: सांगितलं नाही.",
+   "action": "केलेली कृती: {a}.",
+   "join": ", ",
+   "urgency": "तातडी: {u}.",
+   "notify": "कळवलं जाईल: {r}."
+  },
+  "hi": {
+   "asset": "असेट {id}, {name}।",
+   "no_asset": "असेट पहचाना नहीं गया।",
+   "observed": "देखा गया: {list}।",
+   "absent": "बताया गया कि नहीं है: {list}।",
+   "not_confirmed": "पक्का नहीं: {list} (स्रोत पता नहीं)।",
+   "time": "समय: {t}{fix}।",
+   "time_unknown": "समय: पता नहीं{fix}।",
+   "time_fix": " ({old} से सुधारा गया)",
+   "measure": "{kind} {value} {unit}{fix}।",
+   "measure_unknown": "{kind} कितना था, पता नहीं।",
+   "unit_unknown": "इकाई पता नहीं",
+   "unit_none": "इकाई नहीं",
+   "measure_fix": " ({old} से सुधारा गया)",
+   "dropped": " (सुधार सुना गया, लेकिन पहला मान टेक्स्ट में नहीं आया)",
+   "cause_unknown": "कारण: पता नहीं।",
+   "cause_reported": "बताया गया कारण: {c}।",
+   "cause_none": "कारण: बताया नहीं गया।",
+   "action": "की गई कार्रवाई: {a}।",
+   "join": ", ",
+   "urgency": "तात्कालिकता: {u}।",
+   "notify": "सूचित किया जाएगा: {r}।"
+  }
+ },
+ "letters": {
+  "en": {},
+  "devanagari": {
+   "A": "ए",
+   "B": "बी",
+   "C": "सी",
+   "D": "डी",
+   "E": "ई",
+   "F": "एफ",
+   "G": "जी",
+   "H": "एच",
+   "I": "आय",
+   "J": "जे",
+   "K": "के",
+   "L": "एल",
+   "M": "एम",
+   "N": "एन",
+   "O": "ओ",
+   "P": "पी",
+   "Q": "क्यू",
+   "R": "आर",
+   "S": "एस",
+   "T": "टी",
+   "U": "यू",
+   "V": "व्ही",
+   "W": "डब्ल्यू",
+   "X": "एक्स",
+   "Y": "वाय",
+   "Z": "झेड"
+  }
+ },
+ "spoken_units": {
+  "en": {
+   "PSI": "P S I",
+   "RPM": "R P M",
+   "kPa": "kilopascal",
+   "MPa": "megapascal",
+   "°C": "degrees Celsius",
+   "°F": "degrees Fahrenheit",
+   "Hz": "hertz",
+   "kW": "kilowatt",
+   "%": "percent",
+   "bar": "bar"
+  },
+  "mr": {
+   "PSI": "पी एस आय",
+   "RPM": "आर पी एम",
+   "kPa": "किलो पास्कल",
+   "MPa": "मेगा पास्कल",
+   "°C": "डिग्री सेल्सिअस",
+   "°F": "डिग्री फॅरेनहाइट",
+   "Hz": "हर्ट्झ",
+   "kW": "किलोवॅट",
+   "%": "टक्के",
+   "bar": "बार"
+  },
+  "hi": {
+   "PSI": "पी एस आई",
+   "RPM": "आर पी एम",
+   "kPa": "किलो पास्कल",
+   "MPa": "मेगा पास्कल",
+   "°C": "डिग्री सेल्सियस",
+   "°F": "डिग्री फारेनहाइट",
+   "Hz": "हर्ट्ज़",
+   "kW": "किलोवाट",
+   "%": "प्रतिशत",
+   "bar": "बार"
+  }
+ },
+ "spoken_words": {
+  "en": {
+   "point": "point",
+   "hundred": "hundred",
+   "thousand": "thousand",
+   "oclock": "o'clock",
+   "minutes": "",
+   "hour_marker": "",
+   "am": "A M",
+   "pm": "P M"
+  },
+  "mr": {
+   "point": "पॉइंट",
+   "hundred": "शे",
+   "thousand": "हजार",
+   "oclock": "वाजता",
+   "minutes": "मिनिटे",
+   "hour_marker": "वाजून",
+   "am": "ए एम",
+   "pm": "पी एम"
+  },
+  "hi": {
+   "point": "पॉइंट",
+   "hundred": "सौ",
+   "thousand": "हजार",
+   "oclock": "बजे",
+   "minutes": "मिनट",
+   "hour_marker": "बजकर",
+   "am": "ए एम",
+   "pm": "पी एम"
+  }
+ },
+ "choices": {
+  "leakage_confirmed": {
+   "en": "Leak confirmed",
+   "mr": "गळती निश्चित आहे",
+   "hi": "लीकेज पक्का है"
+  },
+  "source_unknown": {
+   "en": "Water source unknown",
+   "mr": "पाण्याचा स्रोत माहीत नाही",
+   "hi": "पानी का स्रोत पता नहीं"
+  },
+  "am": {
+   "en": "AM (morning)",
+   "mr": "सकाळी (AM)",
+   "hi": "सुबह (AM)"
+  },
+  "pm": {
+   "en": "PM (afternoon/evening/night)",
+   "mr": "दुपारी/संध्याकाळी/रात्री (PM)",
+   "hi": "दोपहर/शाम/रात (PM)"
+  },
+  "unknown": {
+   "en": "I don't know",
+   "mr": "माहीत नाही",
+   "hi": "पता नहीं"
+  },
+  "can_wait": {
+   "en": "Can wait",
+   "mr": "थांबू शकतं",
+   "hi": "इंतज़ार कर सकते हैं"
+  },
+  "today": {
+   "en": "Needs attention today",
+   "mr": "आज लक्ष द्यावं लागेल",
+   "hi": "आज ध्यान देना होगा"
+  },
+  "stop_work": {
+   "en": "Stop work now",
+   "mr": "आत्ताच काम थांबवा",
+   "hi": "अभी काम रोकें"
+  },
+  "emergency": {
+   "en": "Emergency: people at risk or fire",
+   "mr": "आणीबाणी: माणसांना धोका किंवा आग",
+   "hi": "आपातकाल: लोगों को खतरा या आग"
+  }
+ },
+ "states": {
+  "present": {
+   "en": "present",
+   "mr": "आहे",
+   "hi": "है"
+  },
+  "absent": {
+   "en": "not present",
+   "mr": "नाही",
+   "hi": "नहीं है"
+  },
+  "not_confirmed": {
+   "en": "not confirmed",
+   "mr": "निश्चित नाही",
+   "hi": "पक्का नहीं"
+  }
+ },
+ "urgency_levels": {
+  "can_wait": {
+   "en": "can wait",
+   "mr": "थांबू शकतं",
+   "hi": "इंतज़ार कर सकते हैं"
+  },
+  "today": {
+   "en": "needs attention today",
+   "mr": "आज लक्ष द्यावं लागेल",
+   "hi": "आज ध्यान देना होगा"
+  },
+  "stop_work": {
+   "en": "stop work now",
+   "mr": "आत्ताच काम थांबवा",
+   "hi": "अभी काम रोकें"
+  },
+  "emergency": {
+   "en": "emergency",
+   "mr": "आणीबाणी",
+   "hi": "आपातकाल"
+  },
+  "unknown": {
+   "en": "not sure",
+   "mr": "खात्री नाही",
+   "hi": "पक्का नहीं पता"
+  }
+ }
+}
