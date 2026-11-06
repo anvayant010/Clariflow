@@ -55,7 +55,7 @@ export function WorkOrderCard({ wo, config }: { wo: WorkOrder; config?: AppConfi
       <div className="wo-lang no-print">
         <div className="seg" role="radiogroup" aria-label="Show this work order in">
           {LANGS.map((l) => (
-            <button key={l} type="button" role="radio" aria-checked={lang === l} className={lang === l ? "on" : ""} onClick={() => setLang(l)}>
+            <button key={l} lang={l} type="button" role="radio" aria-checked={lang === l} className={lang === l ? "on" : ""} onClick={() => setLang(l)}>
               {LANG_LABEL[l]}
             </button>
           ))}

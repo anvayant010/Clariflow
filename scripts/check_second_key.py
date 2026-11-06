@@ -1,7 +1,7 @@
 r"""Check that the SECOND Gnani key (GNANI_API_KEY_ID_2 in .env) works.
 
 Makes ONE short Timbre call with only that key (a few credits of the second account) and prints OK or the reason it
-failed. The key itself is never printed. Run:  .venv\Scripts\python -m scripts.check_second_key
+failed. The key itself is never printed. Run:  python -m scripts.check_second_key
 """
 import dataclasses
 import sys

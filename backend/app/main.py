@@ -1,4 +1,4 @@
-"""FastAPI application.   Run:  .venv\\Scripts\\uvicorn backend.app.main:create_app --factory --port 8000
+"""FastAPI application.   Run:  uvicorn backend.app.main:create_app --factory --port 8000
 
 create_app() takes the outbound seams (speech recognition, voice) and the store as arguments so
 tests run the real routes without any network call.
@@ -18,6 +18,8 @@ from backend.app.api import errors
 from backend.app.api.limits import Limits
 from backend.app.api.providers import Ears, GnaniEars, GnaniVoice, Voice
 from backend.app.api.routes import build_router
+from backend.app.auth.routes import make_auth_router
+from backend.app.auth.users import UserStore, setup_auth
 from backend.app.config import Settings, get_settings
 from backend.app.domain.assets import load_catalogue
 from backend.app.domain.schemas import Asset
@@ -37,24 +39,32 @@ class AppContext:
     voice: Voice
     limits: Limits
     speech_configured: bool
+    user_store: UserStore | None = None
     cache: dict = field(default_factory=dict)
 
 
 def create_app(settings: Settings | None = None, store: Store | None = None, ears: Ears | None = None,
                voice: Voice | None = None) -> FastAPI:
     settings = settings or get_settings()
-    store = store or Store(make_engine(settings.database_url))
+    engine = make_engine(settings.database_url)
+    store = store or Store(engine)
+
+    # Set up auth tables alongside main store
+    setup_auth(engine)
+    user_store = UserStore(engine)
+
     catalogue = load_catalogue()
     app = FastAPI(title="Clariflow", docs_url=None, redoc_url=None, openapi_url=None)  # no public schema page
     app.state.ctx = AppContext(
         settings=settings, store=store, catalogue=catalogue, ears=ears or GnaniEars(catalogue, settings),
         voice=voice or GnaniVoice(settings), limits=Limits(store, settings),
-        speech_configured=bool(settings.gnani_api_key_id or settings.gnani_api_key_id_2) or ears is not None)
+        speech_configured=bool(settings.gnani_api_key_id or settings.gnani_api_key_id_2) or ears is not None,
+        user_store=user_store)
 
     errors.register(app)
     origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
     app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["GET", "POST"],
-                       allow_headers=["Content-Type"], allow_credentials=False)
+                       allow_headers=["Content-Type", "Authorization"], allow_credentials=True)
 
     @app.middleware("http")
     async def request_context(request: Request, call_next):
@@ -74,7 +84,16 @@ def create_app(settings: Settings | None = None, store: Store | None = None, ear
                      (time.perf_counter() - started) * 1000, request.state.request_id)
         return response
 
+    # Main report/session routes
     app.include_router(build_router())
+
+    # Auth routes under /api/auth
+    auth_router, get_current_user = make_auth_router(user_store)
+    app.include_router(auth_router, prefix="/api")
+
+    # Expose get_current_user in app state so routes can use it if needed
+    app.state.get_current_user = get_current_user
+
     dist = ROOT / "frontend" / "dist"
     if dist.is_dir():  # one origin in production: the built React app is served by the same server
         app.mount("/", StaticFiles(directory=dist, html=True), name="frontend")

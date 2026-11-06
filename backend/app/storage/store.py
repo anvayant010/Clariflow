@@ -19,7 +19,7 @@ from backend.app.domain.schemas import Draft, SessionStatus, TranscriptSegment, 
 SCHEMA = [
     """CREATE TABLE IF NOT EXISTS sessions (
         id TEXT PRIMARY KEY, status TEXT NOT NULL, current_revision INTEGER NOT NULL,
-        language TEXT NOT NULL, created_at TEXT NOT NULL)""",
+        language TEXT NOT NULL, created_at TEXT NOT NULL, user_id TEXT)""",
     """CREATE TABLE IF NOT EXISTS segments (
         id TEXT PRIMARY KEY, session_id TEXT NOT NULL REFERENCES sessions(id), turn_index INTEGER NOT NULL,
         body TEXT NOT NULL, UNIQUE (session_id, turn_index))""",
@@ -95,12 +95,12 @@ class Store:
 
     # ---- sessions / segments / drafts
 
-    def create_session(self, language: str = "mr") -> str:
+    def create_session(self, language: str = "mr", user_id: str | None = None) -> str:
         sid = new_id()
         draft = Draft(session_id=sid, revision=0)
         with self.engine.begin() as cx:
-            cx.execute(text("INSERT INTO sessions VALUES (:id, :st, 0, :lang, :ts)"),
-                       {"id": sid, "st": SessionStatus.DRAFT.value, "lang": language, "ts": _now()})
+            cx.execute(text("INSERT INTO sessions (id, status, current_revision, language, created_at, user_id) VALUES (:id, :st, 0, :lang, :ts, :uid)"),
+                       {"id": sid, "st": SessionStatus.DRAFT.value, "lang": language, "ts": _now(), "uid": user_id})
             cx.execute(text("INSERT INTO drafts VALUES (:id, 0, :body, 0, :ts)"),
                        {"id": sid, "body": draft.model_dump_json(), "ts": _now()})
         return sid

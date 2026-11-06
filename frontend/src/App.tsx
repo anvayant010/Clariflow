@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { api, errorText } from "./api";
+import { api, type AuthUser, errorText } from "./api";
+import { AuthModal } from "./AuthModal";
 import { Compare } from "./Compare";
+import { LandingPage } from "./LandingPage";
 import { Quality } from "./Quality";
 import { Report } from "./Report";
 import { Saved } from "./Saved";
 import type { AppConfig } from "./types";
-import { Banner, Icon, Logo, Spinner } from "./ui";
+import { Banner, Icon, Spinner } from "./ui";
 
 type Tab = "report" | "saved" | "compare" | "quality";
 const TABS: { id: Tab; label: string; short: string; icon: string }[] = [
@@ -65,8 +67,29 @@ export function App() {
   // The headline only shows before a report starts, so the question and the draft are never pushed down the screen.
   const [reportActive, setReportActive] = useState(false);
 
+  // Auth state — null = guest (fully functional, no gate)
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [showAuth, setShowAuth] = useState(false);
+  // Landing page — shown once per browser until the user clicks "Open app"
+  const [showLanding, setShowLanding] = useState(() => {
+    if (param("app") === "1") return false;
+    if (param("landing") === "1") return true;
+    try {
+      if ((import.meta as any).env?.MODE === "test") return false;
+      return !localStorage.getItem("clariflow.entered");
+    } catch {
+      return false;
+    }
+  });
+
   useEffect(() => {
     api.config().then(setConfig).catch((e) => setErr(errorText(e)));
+    // Restore auth from httpOnly cookie silently — 401 just means guest mode
+    api.authMe().then((u) => {
+      if (u && typeof u.id === "string" && typeof u.name === "string" && typeof u.email === "string") {
+        setUser(u);
+      }
+    }).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -74,6 +97,11 @@ export function App() {
     if (theme) root.setAttribute("data-theme", theme);
     else root.removeAttribute("data-theme");
   }, [theme]);
+
+  const handleEnter = () => {
+    try { localStorage.setItem("clariflow.entered", "1"); } catch {}
+    setShowLanding(false);
+  };
 
   const shownTheme: Theme = theme ?? systemTheme();
   const toggleTheme = () => {
@@ -86,12 +114,34 @@ export function App() {
     pref.set("clariflow.wide", wide ? "0" : "1");
   };
 
+  if (showLanding) {
+    return (
+      <>
+        <LandingPage
+          user={user}
+          onEnter={handleEnter}
+          onShowAuth={() => setShowAuth(true)}
+        />
+        {showAuth && (
+          <AuthModal
+            onAuth={(u) => { setUser(u); setShowAuth(false); }}
+          />
+        )}
+      </>
+    );
+  }
+
   return (
     <div className={`app${wide ? " wide" : ""}`}>
+      {showAuth && (
+        <AuthModal
+          onAuth={(u) => { setUser(u); setShowAuth(false); }}
+        />
+      )}
       <header className="topbar">
         <div className="topbar-in">
           <div className="brand">
-            <Logo size={34} />
+            <span className="cf-mark" aria-hidden="true">CF</span>
             <h1>Clariflow</h1>
           </div>
 
@@ -106,6 +156,18 @@ export function App() {
           </nav>
 
           <div className="tools">
+            {user && user.name ? (
+              <div className="user-chip">
+                <span className="user-chip-av">{(user.name[0] || "U").toUpperCase()}</span>
+                <span>{(user.name.split(" ")[0] || "User")}</span>
+                <button type="button" className="link" style={{ margin: 0, padding: "0 0 0 4px" }}
+                  onClick={() => api.authLogout().then(() => setUser(null)).catch(() => {})}>
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <button type="button" className="tool" onClick={() => setShowAuth(true)}>Sign in</button>
+            )}
             <button type="button" className="tool wide-toggle" onClick={toggleWide} aria-pressed={wide}
               title={wide ? "Back to the compact layout" : "Use the wide two-column layout"}>
               <Icon name={wide ? "compress" : "expand"} size={17} />

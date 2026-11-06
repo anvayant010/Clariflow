@@ -11,7 +11,7 @@ export class ApiError extends Error {
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(path, init);
+    res = await fetch(path, { credentials: "include", ...init });
   } catch {
     throw new ApiError("network", "Cannot reach the server. Check that it is running and try again.", 0);
   }
@@ -46,6 +46,19 @@ function audioForm(blob: Blob, extra: Record<string, string> = {}): FormData {
   return f;
 }
 
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  created_at: string;
+}
+
+export interface UserStats {
+  total_sessions: number;
+  saved_orders: number;
+  languages: Record<string, number>;
+}
+
 export const api = {
   config: () => call<AppConfig>("/api/config"),
   createSession: (language: Lang) => call<SessionState>("/api/sessions", json({ language })),
@@ -70,6 +83,15 @@ export const api = {
     call<CompareResult>(`/api/compare/demo/${clipId}?live=${live}`, { method: "POST" }),
   compareAudio: (blob: Blob) => call<CompareResult>("/api/compare/audio", { method: "POST", body: audioForm(blob) }),
   compareText: (text: string) => call<CompareResult>("/api/compare/text", json({ text })),
+
+  // Auth
+  authRegister: (email: string, name: string, password: string) =>
+    call<{ user: AuthUser; access_token: string }>("/api/auth/register", json({ email, name, password })),
+  authLogin: (email: string, password: string) =>
+    call<{ user: AuthUser; access_token: string }>("/api/auth/login", json({ email, password })),
+  authLogout: () => call<{ ok: boolean }>("/api/auth/logout", { method: "POST" }),
+  authMe: () => call<AuthUser>("/api/auth/me"),
+  authStats: () => call<UserStats>("/api/auth/stats"),
 };
 
 /** A fresh key per (session, revision); a retry of the same click reuses it so a double tap cannot save twice. */

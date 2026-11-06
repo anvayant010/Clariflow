@@ -139,6 +139,8 @@ def build_router() -> APIRouter:
 
     def effective_mode(ctx, sid: str, mode: str) -> str:
         """An 'answer' with no open question is just more detail about the incident."""
+        if mode == "cause":
+            return "cause"
         return "answer" if mode == "answer" and next_blocker(ctx.store.draft(sid)) is not None else "report"
 
     @router.post("/sessions/{sid}/audio", response_model=TurnOutcome)

@@ -70,10 +70,10 @@ function Stepper({ status }: { status: string }) {
 }
 
 /** Short example reports (checked against the real pipeline), so a first-time visitor knows what to say. */
-const EXAMPLES: { lang: string; text: string }[] = [
-  { lang: "English", text: "Belt two stopped, smoke is coming out" },
-  { lang: "हिन्दी", text: "पंप बारह बंद हो गया, धुआं आ रहा है" },
-  { lang: "मराठी", text: "पंप बारा बंद पडला, धूर येतोय" },
+const EXAMPLES: { lang: string; code: string; text: string }[] = [
+  { lang: "English", code: "en", text: "Belt two stopped, smoke is coming out" },
+  { lang: "हिन्दी", code: "hi", text: "पंप बारह बंद हो गया, धुआं आ रहा है" },
+  { lang: "मराठी", code: "mr", text: "पंप बारा बंद पडला, धूर येतोय" },
 ];
 
 export function Report({ config, wide = false, onStatus }: { config: AppConfig; wide?: boolean; onStatus?: (status: string) => void }) {
@@ -213,6 +213,7 @@ export function Report({ config, wide = false, onStatus }: { config: AppConfig; 
     setState(null);
     setHeard("");
     setMsg(null);
+    setCause({ key: 0, text: "", open: false });
     confirmKey.current = null;
   };
 
@@ -225,7 +226,7 @@ export function Report({ config, wide = false, onStatus }: { config: AppConfig; 
   const hasSide = state !== null || assetsInSide;
 
   return (
-    <div className={`report${status === "empty" ? " is-empty" : ""}`}>
+    <div className={`report${status === "empty" ? " is-empty" : ""}${wide ? " wide" : ""}`}>
       <Stepper status={status} />
       <div className="report-grid">
         <div className="col">
@@ -249,7 +250,7 @@ export function Report({ config, wide = false, onStatus }: { config: AppConfig; 
                 <span className="examples-title">Try saying</span>
                 <ul>
                   {EXAMPLES.map((x) => (
-                    <li key={x.lang}><span className="lang-chip">{x.lang}</span><q>{x.text}</q></li>
+                    <li key={x.lang}><span className="lang-chip" lang={x.code}>{x.lang}</span><q lang={x.code}>{x.text}</q></li>
                   ))}
                 </ul>
               </div>
@@ -380,7 +381,7 @@ function LanguagePicker({ value, onChange, languages, disabled }: {
   return (
     <div className="seg" role="radiogroup" aria-label="Language for questions and read-back">
       {languages.map((l) => (
-        <button key={l.code} type="button" role="radio" aria-checked={value === l.code} className={value === l.code ? "on" : ""}
+        <button key={l.code} lang={l.code} type="button" role="radio" aria-checked={value === l.code} className={value === l.code ? "on" : ""}
           onClick={() => onChange(l.code)} disabled={disabled}>
           {l.label}
         </button>

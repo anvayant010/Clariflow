@@ -47,7 +47,7 @@ export function RoutingRules({ config, language }: { config: AppConfig; language
           {config.routing.rules.map((r) => (
             <tr key={r.level}>
               <td lang={language}>{r.labels[language]}</td>
-              <td lang={language}>{r.notify.map((n) => n.labels[language]).join(", ")}{r.note ? ` (${r.note})` : ""}</td>
+              <td lang={language}>{r.notify.map((n) => n.labels[language] ?? n.labels.en).join(", ")}{r.note ? ` (${r.note})` : ""}</td>
             </tr>
           ))}
         </tbody>

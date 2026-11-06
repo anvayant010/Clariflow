@@ -15,6 +15,41 @@
    "en": "speed",
    "mr": "स्पीड",
    "hi": "स्पीड"
+  },
+  "voltage": {
+   "en": "voltage",
+   "mr": "व्होल्टेज",
+   "hi": "वोल्टेज"
+  },
+  "current": {
+   "en": "current",
+   "mr": "करंट",
+   "hi": "करंट"
+  },
+  "percent": {
+   "en": "percentage",
+   "mr": "टक्केवारी",
+   "hi": "प्रतिशत"
+  },
+  "length": {
+   "en": "length",
+   "mr": "लांबी",
+   "hi": "लंबाई"
+  },
+  "volume": {
+   "en": "volume",
+   "mr": "आकारमान",
+   "hi": "मात्रा"
+  },
+  "frequency": {
+   "en": "frequency",
+   "mr": "फ्रिक्वेन्सी",
+   "hi": "फ्रीक्वेंसी"
+  },
+  "power": {
+   "en": "power",
+   "mr": "पॉवर",
+   "hi": "पावर"
   }
  },
  "questions": {
