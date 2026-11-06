@@ -39,6 +39,23 @@
   --shadow: 0 10px 25px -5px rgba(0, 0, 0, .08), 0 8px 10px -6px rgba(0, 0, 0, .04);
   --bar: rgba(255, 255, 255, .85);
   --outer: #e4e4e7;
+
+  /* Glass navbar variables - Light Theme */
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --nav-border: #e4e4e7;
+  --nav-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.015);
+  --tab-track-bg: #f4f4f5;
+  --tab-track-border: #e4e4e7;
+  --tab-inactive-fg: #52525b;
+  --tab-inactive-hover-bg: #ffffff;
+  --tab-inactive-hover-fg: #09090b;
+  --tool-bg: #ffffff;
+  --tool-border: #e4e4e7;
+  --tool-fg: #3f3f46;
+  --tool-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --tool-hover-bg: #fafafa;
+  --tool-hover-border: #d4d4d8;
+  --tool-hover-fg: #09090b;
 }
 
 :root[data-theme="dark"] {
@@ -68,6 +85,23 @@
   --shadow: 0 8px 30px rgba(0, 0, 0, .7);
   --bar: rgba(9, 9, 11, .88);
   --outer: #000000;
+
+  /* Glass navbar variables - Dark Theme */
+  --nav-bg: rgba(9, 9, 11, 0.72);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --nav-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --tab-track-bg: rgba(255, 255, 255, 0.04);
+  --tab-track-border: rgba(255, 255, 255, 0.08);
+  --tab-inactive-fg: #a1a1aa;
+  --tab-inactive-hover-bg: rgba(255, 255, 255, 0.08);
+  --tab-inactive-hover-fg: #ffffff;
+  --tool-bg: rgba(255, 255, 255, 0.04);
+  --tool-border: rgba(255, 255, 255, 0.08);
+  --tool-fg: #a1a1aa;
+  --tool-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --tool-hover-bg: rgba(255, 102, 0, 0.08);
+  --tool-hover-border: rgba(255, 102, 0, 0.4);
+  --tool-hover-fg: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -88,6 +122,33 @@
     --ok-bg: rgba(34, 197, 94, 0.12);
     --ok-btn: #22c55e;
     --warn: #ff8800;
+    --warn-bg: rgba(255, 136, 0, 0.12);
+    --bad: #f43f5e;
+    --bad-bg: rgba(244, 63, 94, 0.12);
+    --bad-btn: #f43f5e;
+    --info-bg: rgba(255, 102, 0, 0.08);
+    --mark: rgba(255, 102, 0, 0.25);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, .5);
+    --shadow: 0 8px 30px rgba(0, 0, 0, .7);
+    --bar: rgba(9, 9, 11, .88);
+    --outer: #000000;
+
+    /* Glass navbar variables - Dark Theme */
+    --nav-bg: rgba(9, 9, 11, 0.72);
+    --nav-border: rgba(255, 255, 255, 0.08);
+    --nav-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    --tab-track-bg: rgba(255, 255, 255, 0.04);
+    --tab-track-border: rgba(255, 255, 255, 0.08);
+    --tab-inactive-fg: #a1a1aa;
+    --tab-inactive-hover-bg: rgba(255, 255, 255, 0.08);
+    --tab-inactive-hover-fg: #ffffff;
+    --tool-bg: rgba(255, 255, 255, 0.04);
+    --tool-border: rgba(255, 255, 255, 0.08);
+    --tool-fg: #a1a1aa;
+    --tool-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    --tool-hover-bg: rgba(255, 102, 0, 0.08);
+    --tool-hover-border: rgba(255, 102, 0, 0.4);
+    --tool-hover-fg: #ffffff;
     --warn-bg: rgba(255, 136, 0, 0.12);
     --bad: #f43f5e;
     --bad-bg: rgba(244, 63, 94, 0.12);
@@ -179,32 +240,27 @@ ul, ol { padding-left: 1.25rem; margin: 6px 0; }
   .app { max-width: 100%; }
 }
 
-/* Top bar with elevated spacy glassmorphism effect */
+/* Top bar with elevated glassmorphism */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(9, 9, 11, 0.6) !important;
-  backdrop-filter: blur(28px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.2s ease;
-}
-:root[data-theme="light"] .topbar {
-  background: rgba(255, 255, 255, 0.75) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.9) !important;
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid var(--nav-border) !important;
+  box-shadow: var(--nav-shadow) !important;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .topbar::before { display: none; }
 .topbar-in {
   max-width: 1280px;
   margin: 0 auto;
-  height: 72px;
-  padding: 0 28px;
+  height: 64px;
+  padding: 0 24px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 .brand {
   display: flex;
@@ -214,7 +270,7 @@ ul, ol { padding-left: 1.25rem; margin: 6px 0; }
 }
 .brand h1 {
   font-family: var(--font-serif);
-  font-size: 1.38rem;
+  font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.035em;
   color: var(--text);
@@ -222,7 +278,7 @@ ul, ol { padding-left: 1.25rem; margin: 6px 0; }
 }
 .tools {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   margin-left: auto;
   flex: none;
@@ -230,39 +286,34 @@ ul, ol { padding-left: 1.25rem; margin: 6px 0; }
 .tool {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 40px;
-  padding: 0 16px;
+  gap: 6px;
+  height: 35px;
+  padding: 0 14px;
   border-radius: 999px;
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: .86rem;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  font-size: .83rem;
+  color: var(--tool-fg);
+  background: var(--tool-bg);
+  border: 1px solid var(--tool-border);
+  box-shadow: var(--tool-shadow);
   cursor: pointer;
-  transition: all .2s ease;
-}
-:root[data-theme="light"] .tool {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all .15s ease;
 }
 .tool:hover {
-  color: var(--text);
-  border-color: rgba(255, 102, 0, 0.4);
-  background: rgba(255, 102, 0, 0.08);
+  color: var(--tool-hover-fg);
+  border-color: var(--tool-hover-border);
+  background: var(--tool-hover-bg);
   transform: translateY(-1px);
 }
 .tool[aria-pressed="true"] {
   color: #fff;
   border-color: var(--accent);
   background: var(--accent);
-  box-shadow: 0 4px 14px rgba(255, 102, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(255, 102, 0, 0.35);
 }
 .tool.icon-only {
-  width: 40px;
+  width: 35px;
   padding: 0;
   border-radius: 50%;
   justify-content: center;
@@ -283,48 +334,40 @@ ul, ol { padding-left: 1.25rem; margin: 6px 0; }
 /* Tabs Navigation - Desktop vs Mobile Responsive */
 .tabs {
   display: flex;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--tab-track-bg);
+  border: 1px solid var(--tab-track-border);
   border-radius: 999px;
-  padding: 5px;
-  gap: 4px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  padding: 3px;
+  gap: 2px;
   backdrop-filter: blur(12px);
-}
-:root[data-theme="light"] .tabs {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
 }
 .tabs button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: none;
   border: 0;
-  color: var(--muted);
-  padding: 0 16px;
-  height: 36px;
+  color: var(--tab-inactive-fg);
+  padding: 0 14px;
+  height: 32px;
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: .88rem;
+  font-size: .84rem;
   letter-spacing: -0.01em;
   cursor: pointer;
   white-space: nowrap;
   border-radius: 999px;
-  transition: all .2s ease;
+  transition: all .15s ease;
 }
 .tabs button:hover:not(.on) {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.08);
-}
-:root[data-theme="light"] .tabs button:hover:not(.on) {
-  background: rgba(0, 0, 0, 0.05);
+  color: var(--tab-inactive-hover-fg);
+  background: var(--tab-inactive-hover-bg);
 }
 .tabs button.on {
   color: #ffffff;
   background: var(--accent);
-  box-shadow: 0 4px 14px rgba(255, 102, 0, 0.4);
+  box-shadow: 0 1px 3px rgba(255, 102, 0, 0.3), 0 3px 8px rgba(255, 102, 0, 0.25);
 }
 .tl-short { display: none; }
 
@@ -1668,25 +1711,20 @@ mark { background: var(--mark); color: inherit; padding: 0 3px; border-radius: 3
    ============================================================ */
 .landing { min-height: 100vh; background: var(--bg); }
 
-/* Nav with elevated spacy glassmorphism */
+/* Nav with elevated glassmorphism */
 .land-nav {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(9, 9, 11, 0.6) !important;
-  backdrop-filter: blur(28px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.2s ease;
-}
-:root[data-theme="light"] .land-nav {
-  background: rgba(255, 255, 255, 0.75) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.9) !important;
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid var(--nav-border) !important;
+  box-shadow: var(--nav-shadow) !important;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .land-nav-in {
   max-width: 1200px; margin: 0 auto;
-  height: 72px; padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  height: 64px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
 }
 .land-brand { display: flex; align-items: center; gap: 10px; }
 .land-brand-name {
