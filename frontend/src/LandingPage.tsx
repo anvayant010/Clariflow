@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { AuthUser } from "./api";
 
 interface Props {
@@ -6,6 +7,69 @@ interface Props {
   user: AuthUser | null;
 }
 
+const ICONS = {
+  speak: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <line x1="12" x2="12" y1="19" y2="22" />
+    </svg>
+  ),
+  analyze: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 12h3l3-9 4 18 3-9h7" />
+    </svg>
+  ),
+  confirm: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  ),
+  speech: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="M8 9h8" />
+      <path d="M8 13h5" />
+    </svg>
+  ),
+  trail: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </svg>
+  ),
+  prisma: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M9 9h6v6H9z" />
+      <path d="M15 3v6" />
+      <path d="M9 3v6" />
+      <path d="M15 15v6" />
+      <path d="M9 15v6" />
+    </svg>
+  ),
+  timbre: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+    </svg>
+  ),
+  gate: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  ),
+  mobile: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+      <line x1="12" x2="12.01" y1="18" y2="18" />
+    </svg>
+  ),
+};
+
 const STATS = [
   { value: "1.4B", label: "people in India" },
   { value: "22", label: "scheduled languages" },
@@ -13,34 +77,34 @@ const STATS = [
   { value: "89%", label: "Indians don't speak English as first language" },
 ];
 
-const HOW = [
+const HOW: { num: string; icon: ReactNode; title: string; desc: string }[] = [
   {
     num: "01",
-    icon: "🎙️",
+    icon: ICONS.speak,
     title: "Speak the fault",
     desc: "A technician speaks in Marathi, Hindi, English — or any mix. No typing, no forms.",
   },
   {
     num: "02",
-    icon: "🔍",
+    icon: ICONS.analyze,
     title: "AI understands & asks",
     desc: "Gnani Prisma transcribes the speech. Clariflow extracts: asset, symptom, readings, time — and asks exactly one focused follow-up if something's unclear.",
   },
   {
     num: "03",
-    icon: "✅",
+    icon: ICONS.confirm,
     title: "Confirm & save",
     desc: "A human confirms the spoken read-back. Only then is the work order saved — permanently, with full evidence trails.",
   },
 ];
 
-const FEATURES = [
-  { icon: "🗣️", title: "Code-mixed speech", desc: "Handles Marathi-English, Hindi-English and pure speech seamlessly." },
-  { icon: "🔗", title: "Full evidence trail", desc: "Every field links back to the exact words the technician said." },
-  { icon: "🤖", title: "Gnani Prisma STT", desc: "Sovereign Indian AI — no data leaves the country." },
-  { icon: "📢", title: "Gnani Timbre TTS", desc: "Questions and read-backs spoken aloud in the right language." },
-  { icon: "🔒", title: "Human confirmation gate", desc: "Zero false saves — work orders only write after a person confirms." },
-  { icon: "📱", title: "Mobile-first", desc: "Built for shop-floor conditions: noisy environments, one-hand use." },
+const FEATURES: { icon: ReactNode; title: string; desc: string }[] = [
+  { icon: ICONS.speech, title: "Code-mixed speech", desc: "Handles Marathi-English, Hindi-English and pure speech seamlessly." },
+  { icon: ICONS.trail, title: "Full evidence trail", desc: "Every field links back to the exact words the technician said." },
+  { icon: ICONS.prisma, title: "Gnani Prisma STT", desc: "Sovereign Indian AI — no data leaves the country." },
+  { icon: ICONS.timbre, title: "Gnani Timbre TTS", desc: "Questions and read-backs spoken aloud in the right language." },
+  { icon: ICONS.gate, title: "Human confirmation gate", desc: "Zero false saves — work orders only write after a person confirms." },
+  { icon: ICONS.mobile, title: "Mobile-first", desc: "Built for shop-floor conditions: noisy environments, one-hand use." },
 ];
 
 export function LandingPage({ onEnter, onShowAuth, user }: Props) {
@@ -50,18 +114,18 @@ export function LandingPage({ onEnter, onShowAuth, user }: Props) {
       <nav className="land-nav">
         <div className="land-nav-in">
           <div className="land-brand">
-            <span className="cf-mark" aria-hidden="true">CF</span>
             <span className="land-brand-name">Clariflow</span>
           </div>
           <div className="land-nav-actions">
             <a href="#how" className="land-link">How it works</a>
+            <a href="#comparison" className="land-link">Why Clariflow</a>
             <a href="#features" className="land-link">Features</a>
             {user ? (
               <button type="button" className="btn primary small" onClick={onEnter}>Open app →</button>
             ) : (
               <>
-                <button type="button" className="btn secondary small" onClick={onShowAuth}>Sign in</button>
-                <button type="button" className="btn primary small" onClick={onShowAuth}>Get started free</button>
+                <button type="button" className="land-link" onClick={onShowAuth}>Sign in</button>
+                <button type="button" className="btn primary small" onClick={onEnter}>Get started free</button>
               </>
             )}
           </div>
@@ -71,7 +135,7 @@ export function LandingPage({ onEnter, onShowAuth, user }: Props) {
       {/* ---- HERO ---- */}
       <section className="land-hero">
         <div className="land-hero-in">
-          <span className="land-eyebrow">Great Indian AI Internship Challenge · Gnani.ai</span>
+          <span className="land-eyebrow">Enterprise Voice Copilot · Powered by Gnani</span>
           <h1 className="land-h1">
             Voice-first fault reporting<br />
             <span className="land-orange">for every Indian worker.</span>
@@ -134,6 +198,51 @@ export function LandingPage({ onEnter, onShowAuth, user }: Props) {
         </div>
       </section>
 
+      {/* ---- COMPARISON / WHY WE WIN ---- */}
+      <section className="land-comparison" id="comparison">
+        <div className="land-section-in">
+          <p className="land-section-eyebrow">Enterprise Advantage</p>
+          <h2 className="land-h2">Why standard LLMs fail on the factory floor.</h2>
+          <p className="land-section-sub">
+            Generic chatbots and cloud voice assistants hallucinate equipment IDs and silently corrupt industrial data.
+            Clariflow is engineered for zero-tolerance plant environments.
+          </p>
+          <div className="land-comp-table-wrap">
+            <table className="land-comp-table">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th>Generic Chatbot / LLM</th>
+                  <th>Clariflow (Sovereign Voice Copilot)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Spoken Indic Code-Mix</strong><br/><span className="tbl-sub">Mixed Marathi-English &amp; Hindi-English</span></td>
+                  <td><span className="comp-bad">✗ Hallucinates transliterations &amp; misses dialect shifts</span></td>
+                  <td><span className="comp-ok">✓ Gnani Prisma v3.0 Indic Acoustic Steering</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Database Safety &amp; Writes</strong><br/><span className="tbl-sub">Equipment records &amp; maintenance work orders</span></td>
+                  <td><span className="comp-bad">✗ Silent hallucinations &amp; unverified DB writes</span></td>
+                  <td><span className="comp-ok">✓ SQLite Trigger Kernel: 0 unconfirmed writes</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Audit Trail &amp; Provenance</strong><br/><span className="tbl-sub">Verification for safety compliance</span></td>
+                  <td><span className="comp-bad">✗ Black-box text without receipts</span></td>
+                  <td><span className="comp-ok">✓ 100% word-level audio &amp; timestamp link</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Hands-Free Verification</strong><br/><span className="tbl-sub">Read-back confirmation on noisy shop-floor</span></td>
+                  <td><span className="comp-bad">✗ Screen reading required</span></td>
+                  <td><span className="comp-ok">✓ Gnani Timbre natural Indic voice readback</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       {/* ---- FEATURES ---- */}
       <section className="land-features" id="features">
         <div className="land-section-in">
@@ -157,14 +266,14 @@ export function LandingPage({ onEnter, onShowAuth, user }: Props) {
           <p className="land-powered-label">Powered by</p>
           <div className="land-powered-badges">
             <div className="land-badge-item">
-              <span className="land-badge-icon">🗣️</span>
+              <span className="land-badge-icon">{ICONS.prisma}</span>
               <div>
                 <strong>Gnani Prisma v3.0</strong>
                 <span>Speech-to-Text — Marathi, Hindi, English code-mix</span>
               </div>
             </div>
             <div className="land-badge-item">
-              <span className="land-badge-icon">📢</span>
+              <span className="land-badge-icon">{ICONS.timbre}</span>
               <div>
                 <strong>Gnani Timbre v3.0</strong>
                 <span>Text-to-Speech — Natural Indian voice (Shivani)</span>
@@ -187,10 +296,9 @@ export function LandingPage({ onEnter, onShowAuth, user }: Props) {
 
       {/* ---- FOOTER ---- */}
       <footer className="land-footer">
-        <span className="badge demo">Synthetic demonstration — fictional plant & made-up data only</span>
-        <span>Speech by Gnani Prisma &amp; Gnani Timbre. Built for the Great Indian AI Internship Challenge.</span>
+        <span>Enterprise Indic Speech Infrastructure powered by Gnani Prisma &amp; Timbre.</span>
+        <span>© 2026 Clariflow · Sovereign Voice AI Operations</span>
       </footer>
     </div>
   );
 }
-

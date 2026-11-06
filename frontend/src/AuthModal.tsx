@@ -34,7 +34,6 @@ export function AuthModal({ onAuth }: Props) {
       <div className="auth-modal">
         {/* Wordmark */}
         <div className="auth-brand">
-          <span className="cf-mark" aria-hidden="true">CF</span>
           <span className="auth-brand-name">Clariflow</span>
         </div>
 

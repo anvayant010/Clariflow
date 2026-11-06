@@ -76,6 +76,78 @@ const EXAMPLES: { lang: string; code: string; text: string }[] = [
   { lang: "मराठी", code: "mr", text: "पंप बारा बंद पडला, धूर येतोय" },
 ];
 
+const TUTORIAL_STEPS = [
+  {
+    step: 1,
+    title: "1. Speak your report (or tap an example)",
+    desc: "Tap the orange microphone and describe the equipment fault in Marathi, Hindi, or English — you can mix languages naturally! Or simply tap any of the pre-made sample cards below to test with 1 tap.",
+    badge: "Voice & Speech Input",
+  },
+  {
+    step: 2,
+    title: "2. Automatic AI Extraction & Clarification",
+    desc: "Clariflow parses equipment ID, symptom, readings, and timestamps. If any detail is ambiguous or severity is critical, it will ask one focused follow-up question instead of guessing.",
+    badge: "Zero-Assumption Parsing",
+  },
+  {
+    step: 3,
+    title: "3. Voice Read-back & Final Confirmation",
+    desc: "Listen to the structured report read aloud via Gnani Timbre natural voice. Review word-level provenance receipts. Only when you confirm with 'Yes, this is correct' is the work order permanently committed to the database.",
+    badge: "100% Provenance & Safety Gate",
+  },
+];
+
+function TutorialGuide({ onStop }: { onStop: () => void }) {
+  const [stepIdx, setStepIdx] = useState(0);
+  const cur = TUTORIAL_STEPS[stepIdx];
+
+  return (
+    <div className="tutorial-card" role="region" aria-label="Interactive guide">
+      <div className="tutorial-head">
+        <div className="tutorial-tag">
+          <span className="tutorial-badge">{cur.badge}</span>
+          <span className="tutorial-counter">Step {cur.step} of {TUTORIAL_STEPS.length}</span>
+        </div>
+        <button type="button" className="tutorial-stop-btn" onClick={onStop} title="Stop tutorial">
+          Stop tutorial ✕
+        </button>
+      </div>
+      <h3 className="tutorial-title">{cur.title}</h3>
+      <p className="tutorial-desc">{cur.desc}</p>
+      <div className="tutorial-nav">
+        <div className="tutorial-dots">
+          {TUTORIAL_STEPS.map((_, i) => (
+            <span
+              key={i}
+              className={`tutorial-dot ${i === stepIdx ? "active" : ""}`}
+              onClick={() => setStepIdx(i)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Go to step ${i + 1}`}
+            />
+          ))}
+        </div>
+        <div className="tutorial-actions">
+          {stepIdx > 0 && (
+            <button type="button" className="btn secondary small" onClick={() => setStepIdx((s) => s - 1)}>
+              ← Back
+            </button>
+          )}
+          {stepIdx < TUTORIAL_STEPS.length - 1 ? (
+            <button type="button" className="btn primary small" onClick={() => setStepIdx((s) => s + 1)}>
+              Next step →
+            </button>
+          ) : (
+            <button type="button" className="btn primary small" onClick={onStop}>
+              Got it, let's start! ✓
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Report({ config, wide = false, onStatus }: { config: AppConfig; wide?: boolean; onStatus?: (status: string) => void }) {
   const [lang, setLang] = useState<Lang>("mr");
   const [state, setState] = useState<SessionState | null>(null);
@@ -86,6 +158,21 @@ export function Report({ config, wide = false, onStatus }: { config: AppConfig; 
   // The cause is free text, and speech recognition on a short phrase can be wrong: after a SPOKEN cause the words it
   // heard are put in an editable box (open) so the person can fix them before the read-back is confirmed.
   const [cause, setCause] = useState({ key: 0, text: "", open: false });
+  const [showTutorial, setShowTutorial] = useState(() => {
+    try {
+      return localStorage.getItem("clariflow.tutorial_dismissed") !== "1";
+    } catch {
+      return true;
+    }
+  });
+
+  const stopTutorial = () => {
+    setShowTutorial(false);
+    try {
+      localStorage.setItem("clariflow.tutorial_dismissed", "1");
+    } catch {}
+  };
+
   const confirmKey = useRef<{ session: string; revision: number; key: string } | null>(null);
   const maxSeconds = config.limits.max_clip_seconds;
 
@@ -233,7 +320,25 @@ export function Report({ config, wide = false, onStatus }: { config: AppConfig; 
           <div className="lang-row">
             <span className="lang-cap" aria-hidden="true">Questions and read-back in</span>
             <LanguagePicker value={state?.language ?? lang} onChange={onLanguage} languages={config.languages} disabled={disabled || status === "saved"} />
+            <button
+              type="button"
+              className={`tutorial-pill-btn ${showTutorial ? "active" : ""}`}
+              onClick={() => {
+                if (showTutorial) {
+                  stopTutorial();
+                } else {
+                  setShowTutorial(true);
+                }
+              }}
+              title="Toggle interactive tutorial"
+            >
+              💡 {showTutorial ? "Hide guide" : "How to use"}
+            </button>
           </div>
+
+          {showTutorial && status === "empty" && (
+            <TutorialGuide onStop={stopTutorial} />
+          )}
 
           {busy && <Spinner label={busy} />}
           {msg && <Banner kind={msg.kind}>{msg.text}</Banner>}
@@ -247,10 +352,13 @@ export function Report({ config, wide = false, onStatus }: { config: AppConfig; 
               <p>Say which equipment, what is wrong, when, and any readings. You can mix Marathi, Hindi and English.</p>
               <RecordButton maxSeconds={maxSeconds} onClip={onClip} onProblem={(t) => setMsg({ kind: "info", text: t })} disabled={disabled} idleLabel="Tap and speak" />
               <div className="examples">
-                <span className="examples-title">Try saying</span>
+                <span className="examples-title">Try saying (or tap to test)</span>
                 <ul>
                   {EXAMPLES.map((x) => (
-                    <li key={x.lang}><span className="lang-chip" lang={x.code}>{x.lang}</span><q lang={x.code}>{x.text}</q></li>
+                    <li key={x.lang} role="button" tabIndex={0} onClick={() => onText(x.text)} title={`Tap to report: "${x.text}"`}>
+                      <span className="lang-chip" lang={x.code}>{x.lang}</span>
+                      <q lang={x.code}>{x.text}</q>
+                    </li>
                   ))}
                 </ul>
               </div>

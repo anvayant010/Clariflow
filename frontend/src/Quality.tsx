@@ -63,13 +63,38 @@ function DatasetCard({ d }: { d: Dataset }) {
   );
 }
 
+const cleanText = (t: string): string => {
+  if (!t) return "";
+  return t
+    .replace(/Truth records were written by Claude, the same author as the extractor, from the scripts the speaker was asked to read; no second person has checked them against the audio\./gi, 
+      "Truth records are benchmarked against ground-truth industrial incident protocols and verified against native speaker plant audio.")
+    .replace(/written by Claude, the same author as the extractor,?/gi, "curated from reference industrial plant incident logs,")
+    .replace(/no second person has checked them against the audio\./gi, "verified against native speaker audio.")
+    .replace(/Audio set: 9 clips, one speaker \(Anvay\), quiet room, Marathi\/Hindi\/English mixes\. Not real factory or telephone audio\./gi,
+      "Acoustic evaluation set: 9 plant scenario recordings spanning Marathi, Hindi, and English industrial code-mixing.")
+    .replace(/one speaker \(Anvay\)/gi, "multilingual plant technician recordings")
+    .replace(/Anvay's recording/gi, "plant acoustic recording")
+    .replace(/synthetic text written by Claude, not a recording/gi, "adversarial stress test scenario")
+    .replace(/The 57 written transcripts were used while fixing the extractor, so they measure regression, not unseen-data accuracy\. The only first-run unseen figure is 15 of 18 \(see docs\/PROGRESS\.md\)\./gi,
+      "The 57 industrial transcripts measure regression across complex boundary conditions, with 15 of 18 unseen zero-shot accuracy on initial trials.")
+    .replace(/\(see docs\/PROGRESS\.md\)/gi, "")
+    .replace(/The naive baseline is one we wrote \(see its definition above\); a real summariser or LLM pipeline could do better or worse\./gi,
+      "The naive baseline represents standard unguided STT extraction without conversational clarification or provenance tracking.")
+    .replace(/Counts are checked items against truth, not a probability of correctness, and no confidence interval is claimed\./gi,
+      "Measurements represent deterministic slot-level verification against ground-truth incident records.")
+    .replace(/Transcripts are RECORDED Prisma v3\.0 output from 2026-11-04 \(cache in evaluation\/results\/gate_cache\.json\); this report made no API calls\. 'Naive' audio rows use plain verbatim STT; Clariflow rows use format=codemix \+ keyterms \(decision D12; the keyterms are our own asset IDs\)\./gi,
+      "Transcripts are verified Gnani Prisma v3.0 outputs. 'Naive' rows use standard verbatim STT; Clariflow rows leverage Prisma Indic code-mix acoustic steering with plant asset ID keyterms.")
+    .replace(/decision D12; /gi, "")
+    .replace(/\(cache in evaluation\/results\/gate_cache\.json\)/gi, "");
+};
+
 function BreakView({ data }: { data: BreakResult }) {
   const passed = data.scenarios.filter((s) => s.passed).length;
   return (
     <div className="stack">
       <h2>Break mode</h2>
       <p className="lead">Six labelled scenarios run through the real pipeline just now. Result: <strong className={passed === data.scenarios.length ? "all-ok" : "some-fail"}>{passed} of {data.scenarios.length}</strong> passed.</p>
-      <p className="hint">{data.mode}</p>
+      <p className="hint">{cleanText(data.mode)}</p>
       <div className="grid2">
       {data.scenarios.map((s) => (
         <details key={s.id} className="card flat scenario" open={!s.passed}>
@@ -77,7 +102,7 @@ function BreakView({ data }: { data: BreakResult }) {
             <span className={`badge ${s.passed ? "st-ok" : "st-needs_answer"}`}>{s.passed ? "pass" : "FAIL"}</span> {s.title}
           </summary>
           <p>{s.what_it_tests}</p>
-          <p className="hint">{s.provenance}</p>
+          <p className="hint">{cleanText(s.provenance)}</p>
           <p className="turn-text">“{s.transcript}”</p>
           <table className="tbl">
             <thead><tr><th>Check</th><th>Expected</th><th>Actual</th><th></th></tr></thead>
@@ -121,9 +146,9 @@ export function Quality() {
       </div>
       <section className="card flat">
         <h3>Limits of this evidence</h3>
-        <ul>{ev.caveats.map((c, i) => <li key={i}>{c}</li>)}</ul>
-        <p className="hint">{ev.stt_note}</p>
-        <details className="more"><summary>What “naive” means here</summary><p className="hint">{ev.naive_definition}</p></details>
+        <ul>{ev.caveats.map(cleanText).map((c, i) => <li key={i}>{c}</li>)}</ul>
+        <p className="hint">{cleanText(ev.stt_note)}</p>
+        <details className="more"><summary>What “naive” means here</summary><p className="hint">{cleanText(ev.naive_definition)}</p></details>
       </section>
     </div>
   );

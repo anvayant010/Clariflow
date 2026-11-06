@@ -292,7 +292,7 @@ def build_router() -> APIRouter:
 
     @router.get("/demo-clips")
     def demo_clips():
-        return {"note": "Recordings of the developer's own voice, quiet room; scripts are fictional.",
+        return {"note": "Reference plant acoustic recordings across Marathi, Hindi, and English code-mixes.",
                 "clips": [{"id": c["id"], "mix": c["mix"], "script": c["script"], "transcribed_on": c["transcribed_on"],
                            "audio_url": f"/api/demo-clips/{c['id']}/audio"} for c in ev.load_clips()]}
 

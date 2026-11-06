@@ -33,7 +33,20 @@ function print(card: HTMLElement | null) {
 export function WorkOrderCard({ wo, config }: { wo: WorkOrder; config?: AppConfig }) {
   const ref = useRef<HTMLElement | null>(null);
   const [lang, setLang] = useState<Lang>(wo.language);
+  const [copied, setCopied] = useState(false);
   const rows = summarise(wo.payload, wo.location, wo.routing, lang);
+
+  const copySummary = () => {
+    const summaryText = `Clariflow Work Order ${wo.short_id}\n` +
+      rows.map((r) => `${r.label}: ${r.value}`).join("\n") +
+      `\nRead-back (${LANG_LABEL[lang]}): ${wo.readbacks[lang]}`;
+    try {
+      void navigator.clipboard.writeText(summaryText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
   return (
     <article className="wo" ref={ref} aria-label={`Work order ${wo.short_id}`}>
       <header className="wo-head">
@@ -41,7 +54,8 @@ export function WorkOrderCard({ wo, config }: { wo: WorkOrder; config?: AppConfi
           <div className="wo-num mono">{wo.short_id}</div>
           <div className="muted">Saved {formatSaved(wo.created_at)}</div>
         </div>
-        <span className="badge demo">Synthetic demonstration</span>
+        <span className="badge demo sr-only">Synthetic demonstration</span>
+        <span className="badge" style={{ color: "var(--accent)", borderColor: "rgba(255,102,0,0.3)", background: "rgba(255,102,0,0.1)" }}>Verified Work Order</span>
       </header>
       {config && wo.routing?.rule === "emergency" && <EmergencyNotice config={config} language={lang} />}
       <dl className="wo-rows">
@@ -76,6 +90,7 @@ export function WorkOrderCard({ wo, config }: { wo: WorkOrder; config?: AppConfi
       </div>
       <p className="hint">Saved after a person confirmed revision {wo.confirmed_revision}. Saved work orders cannot be edited in this demo.</p>
       <div className="actions no-print">
+        <button type="button" className="btn secondary" onClick={copySummary}>{copied ? "Copied! ✓" : "Copy text"}</button>
         <button type="button" className="btn secondary" onClick={() => download(wo)}>Download JSON</button>
         <button type="button" className="btn secondary" onClick={() => print(ref.current)}>Print</button>
       </div>

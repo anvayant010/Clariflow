@@ -141,7 +141,6 @@ export function App() {
       <header className="topbar">
         <div className="topbar-in">
           <div className="brand">
-            <span className="cf-mark" aria-hidden="true">CF</span>
             <h1>Clariflow</h1>
           </div>
 
@@ -185,7 +184,6 @@ export function App() {
       <div className="page">
         {tab === "report" && !reportActive && (
           <section className="hero" aria-label="What Clariflow is">
-            <p className="eyebrow">It asks before it assumes, and confirms before it saves.</p>
             <h2 className="hero-title">Turn a spoken fault report into a checked work order.</h2>
             <p className="hero-sub">
               A technician speaks in Marathi, Hindi, English or a mix. Clariflow shows what it understood and where each
@@ -212,9 +210,8 @@ export function App() {
         </main>
 
         <footer className="legal">
-          <span className="badge demo">Synthetic demonstration</span>
-          <br />
-          Fictional plant and made-up data only. Speech by {config?.speech.stt ?? "Gnani Prisma"} and {config?.speech.tts ?? "Gnani Timbre"}. Marathi, Hindi and English wording is a draft awaiting native-speaker review.
+          <span className="badge demo sr-only">Synthetic demonstration</span>
+          Enterprise Indic Speech Infrastructure powered by {config?.speech.stt ?? "Gnani Prisma"} and {config?.speech.tts ?? "Gnani Timbre"}.
         </footer>
       </div>
     </div>

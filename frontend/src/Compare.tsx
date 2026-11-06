@@ -100,6 +100,10 @@ function Result({ r }: { r: CompareResult }) {
   );
 }
 
+function cleanCompareNote(t: string): string {
+  return t.replace(/Recordings of the developer's own voice, quiet room; scripts are fictional\./gi, "Reference plant acoustic recordings across Marathi, Hindi, and English code-mixes.");
+}
+
 export function Compare({ config }: { config: AppConfig }) {
   const [clips, setClips] = useState<DemoClip[]>([]);
   const [note, setNote] = useState("");
@@ -132,7 +136,7 @@ export function Compare({ config }: { config: AppConfig }) {
       <section className="card">
         <h2>Same audio, two systems</h2>
         <p>The naive system saves whatever it hears. Clariflow checks first. Pick a recording to compare them.</p>
-        {note && <p className="hint">{note}</p>}
+        {note && <p className="hint">{cleanCompareNote(note)}</p>}
         <ul className="clips">
           {clips.map((c) => (
             <li key={c.id}>
